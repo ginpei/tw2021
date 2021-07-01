@@ -1,6 +1,7 @@
 import React from "react";
-import logo from "./logo.svg";
+import styled from "styled-components";
 import "./App.css";
+import logo from "./logo.svg";
 
 const App: React.VFC = () => {
   return (
@@ -8,7 +9,9 @@ const App: React.VFC = () => {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          <TomatoText>
+            Edit <code>src/App.tsx</code> and save to reload.
+          </TomatoText>
         </p>
         <a
           className="App-link"
@@ -22,5 +25,9 @@ const App: React.VFC = () => {
     </div>
   );
 };
+
+const TomatoText = styled.span`
+  color: tomato;
+`;
 
 export default App;
