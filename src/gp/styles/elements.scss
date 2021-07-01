@@ -1,0 +1,141 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+article,
+details,
+figcaption,
+figure,
+form,
+h1,
+h2,
+h3,
+ol,
+p,
+pre,
+table,
+ul {
+  margin-top: 1em;
+}
+
+body {
+  background-color: var(--base-bg);
+  color: var(--base-fg);
+  font-family: "游ゴシック", sans-serif;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid var(--table-border-color);
+  padding: var(--base-padding);
+}
+
+th {
+  background-color: var(--table-header-bg);
+  color: var(--table-header-fg);
+}
+
+:where(ol, ul) {
+  padding-inline-start: 40px;
+
+  li > & {
+    margin-top: calc(var(--clickable-height) - 1em);
+  }
+}
+
+li {
+  & + & {
+    margin-top: calc(var(--clickable-height) - 1em);
+  }
+}
+
+details {
+  border-color: var(--spectrum-alias-border-color,var(--spectrum-global-color-gray-400));
+  border-radius: var(--spectrum-alias-border-radius-regular,var(--spectrum-global-dimension-size-50));
+  border-style: solid;
+  border-width: var(--spectrum-alias-border-size-thin,var(--spectrum-global-dimension-static-size-10));
+  padding: 1rem;
+}
+
+summary {
+  border-color: var(--spectrum-alias-border-color,var(--spectrum-global-color-gray-400));
+  border-style: none;
+  border-width: var(--spectrum-alias-border-size-thin,var(--spectrum-global-dimension-static-size-10));
+  cursor: pointer;
+  margin: -1rem -1rem;
+  padding: 3px var(--spectrum-global-dimension-size-150) 5px calc(var(--spectrum-global-dimension-size-150) - 1px);
+
+  details[open] & {
+    border-bottom-style: solid;
+    margin-bottom: 0;
+  }
+}
+
+blockquote {
+  background-color: var(--box-bg);
+  border-left: 0.3em solid #ddd;
+  padding-left: 0.5em;
+}
+
+pre {
+  background-color: #333;
+  color: #fff;
+
+  code {
+    background-color: transparent;
+    color: inherit;
+  }
+}
+
+a {
+  color: var(--spectrum-global-color-blue-600);
+
+  &:hover {
+    color: var(--spectrum-global-color-red-600);
+  }
+
+  &[href^="http"] {
+    &::after {
+      content: "🚀";
+      display: inline-block;
+      margin-left: 0.1em;
+    }
+
+    &:where(:hover, :focus)::after {
+      transform: translate(0.2em, -0.2em);
+      transition: transform 200ms;
+    }
+  }
+}
+
+button {
+  color: var(--spectrum-alias-text-color,var(--spectrum-global-color-gray-800));
+}
+
+code {
+  font-family: var(--code-font);
+  background-color: var(--code-bg);
+  border-radius: 0.2em;
+  color: var(--code-fg);
+  padding: 0 0.5em;
+
+  a:hover code {
+    color: var(--link-hover-fg);
+  }
+}
+
+label {
+  cursor: pointer;
+}
+
+button,
+input,
+select,
+textarea {
+  box-sizing: border-box;
+  min-height: var(--clickable-height);
+}

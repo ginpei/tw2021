@@ -1,7 +1,9 @@
-export const NotFoundScreen: React.FC = () => {
+import { BasicLayout } from "../../layouts/basic/BasicLayout";
+
+export const NotFoundScreen: React.FC<{ title?: string }> = ({ title }) => {
   return (
-    <div className="NotFoundScreen">
+    <BasicLayout title={title ?? "Not found"}>
       <h1>Not found</h1>
-    </div>
+    </BasicLayout>
   );
 };

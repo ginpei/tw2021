@@ -1,0 +1,41 @@
+.u-container {
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: min(800px, 100%);
+}
+
+.u-breakContainer {
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+
+.u-margin {
+  margin-top: 1rem;
+}
+
+.u-fullWidth {
+  width: 100%;
+}
+
+.u-textCenter {
+  text-align: center;
+}
+
+.u-vScroll {
+  overflow: auto;
+  width: 100%;
+}
+
+.u-checkbox,
+.u-radio {
+  line-height: var(--clickable-height);
+
+  & > input[type="checkbox"],
+  & > input[type="radio"] {
+    margin-right: 0.5em;
+    vertical-align: middle;
+  }
+}
