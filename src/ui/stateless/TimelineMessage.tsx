@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Message } from "../../data/message";
 import { MessageResolved } from "../../data/messageResolved";
 import { userHomePath } from "../screens/account/UserHomePage";
 
