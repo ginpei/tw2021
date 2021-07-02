@@ -11,3 +11,11 @@ export async function fetchRecentMessageOf(userId: string): Promise<Message[]> {
     .sort((v, u) => u.createdAt - v.createdAt);
   return messages;
 }
+
+export async function fetchRecentGlobalMessage(): Promise<Message[]> {
+  await sleep(500);
+  const messages = database
+    .sort((v, u) => u.createdAt - v.createdAt)
+    .slice(0, 30);
+  return messages;
+}

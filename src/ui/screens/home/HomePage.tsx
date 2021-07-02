@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { BasicLayout } from "../../layouts/basic/BasicLayout";
 import { userHomePath } from "../account/UserHomePage";
 import { loginPath } from "../login/LoginPage";
+import { GlobalTimeline } from "./GlobalTimeline";
 
 export const HomePage: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ export const HomePage: React.FC = () => {
       <p>
         <Link to={userHomePath("ginpei_jp")}>@ginpei_jp</Link>
       </p>
+      <GlobalTimeline />
     </BasicLayout>
   );
 };
