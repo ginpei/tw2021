@@ -1,6 +1,6 @@
 import { sleep } from "../misc/util";
 import { Message } from "./message";
-import { dummyMessageDatabase } from "./messageDb.dummy";
+import dummyMessageDatabase from "./messageDb.dummy.json";
 
 const database: Message[] = dummyMessageDatabase;
 
