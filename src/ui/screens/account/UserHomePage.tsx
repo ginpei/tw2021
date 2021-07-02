@@ -4,6 +4,7 @@ import { useUserRecentMessages } from "../../../data/messageHooks";
 import { useUserByScreenName } from "../../../data/userDbHooks";
 import { rootPath } from "../../../misc/mist";
 import { BasicLayout } from "../../layouts/basic/BasicLayout";
+import { TimelineMessage } from "../../stateless/TimelineMessage";
 import { NotFoundScreen } from "../notFound/NotFoundScreen";
 
 type ParamNames = "screenName";
@@ -32,12 +33,7 @@ export const UserHomePage: React.FC = () => {
       <div className="messages">
         {messages ? (
           messages.map((message) => (
-            <Box key={message.id}>
-              <div>{message.body}</div>
-              <div>
-                <small>{new Date(message.createdAt).toLocaleString()}</small>
-              </div>
-            </Box>
+            <TimelineMessage key={message.id} message={message} />
           ))
         ) : (
           <div>...</div>
