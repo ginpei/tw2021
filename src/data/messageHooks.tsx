@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Message } from "./message";
 import { fetchRecentGlobalMessage, fetchRecentMessageOf } from "./messageDb";
+import { MessageResolved } from "./messageResolved";
+import { resolveMessages } from "./messageResolvedDb";
 
 export function useUserRecentMessages(
   userId: string | undefined
@@ -22,15 +24,21 @@ export function useUserRecentMessages(
   return [messages];
 }
 
-export function useGlobalTimeline(): [Message[] | undefined] {
-  const [messages, setMessages] = useState<Message[] | undefined>(undefined);
+export function useGlobalTimeline(): [MessageResolved[] | undefined] {
+  const [messages, setMessages] = useState<MessageResolved[] | undefined>(
+    undefined
+  );
 
   useEffect(() => {
     setMessages(undefined);
 
-    fetchRecentGlobalMessage().then((newMessages) => {
-      setMessages(newMessages);
-    });
+    fetchRecentGlobalMessage()
+      .then((rawMessages) => {
+        return resolveMessages(rawMessages);
+      })
+      .then((newMessages) => {
+        setMessages(newMessages);
+      });
   }, []);
 
   return [messages];

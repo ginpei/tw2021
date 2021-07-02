@@ -1,16 +1,20 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Message } from "../../data/message";
+import { MessageResolved } from "../../data/messageResolved";
 import { userHomePath } from "../screens/account/UserHomePage";
 
-export const TimelineMessage: React.FC<{ message: Message }> = ({
+export const TimelineMessage: React.FC<{ message: MessageResolved }> = ({
   message,
 }) => {
+  const screenName = message.user?.screenName ?? encodeURIComponent("???");
   return (
     <Frame>
       <MessageMeta>
-        <UserName to="#TODO">{message.userId}</UserName>
-        <Link to="#TODO">@{message.userId}</Link>
+        <UserName to={userHomePath(screenName)}>
+          {message.user?.name ?? "???"}
+        </UserName>
+        <Link to="#TODO">@{screenName}</Link>
         <Link to="#TODO">{timeToString(message.createdAt)}</Link>
       </MessageMeta>
       <div>{message.body}</div>
