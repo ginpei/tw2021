@@ -1,11 +1,14 @@
 import { HelmetProvider } from "react-helmet-async";
-import { AppRouter } from "./misc/AppRouter";
+import { LoginUserProvider } from "./data/LoginUserContext";
 import "./gp/styles/index.scss";
+import { AppRouter } from "./misc/AppRouter";
 
 const App: React.VFC = () => {
   return (
     <HelmetProvider>
-      <AppRouter />
+      <LoginUserProvider>
+        <AppRouter />
+      </LoginUserProvider>
     </HelmetProvider>
   );
 };
