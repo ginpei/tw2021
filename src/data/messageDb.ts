@@ -6,6 +6,8 @@ const database: Message[] = dummyMessageDatabase;
 
 export async function fetchRecentMessageOf(userId: string): Promise<Message[]> {
   await sleep(500);
-  const messages = database.filter((v) => v.userId === userId);
+  const messages = database
+    .filter((v) => v.userId === userId)
+    .sort((v, u) => u.createdAt - v.createdAt);
   return messages;
 }

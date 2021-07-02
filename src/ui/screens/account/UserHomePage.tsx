@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import styled from "styled-components";
 import { useUserRecentMessages } from "../../../data/messageHooks";
 import { useUserByScreenName } from "../../../data/userDbHooks";
 import { rootPath } from "../../../misc/mist";
@@ -30,7 +31,14 @@ export const UserHomePage: React.FC = () => {
       <h1>{user.name}</h1>
       <div className="messages">
         {messages ? (
-          messages.map((message) => <div key={message.id}>{message.body}</div>)
+          messages.map((message) => (
+            <Box key={message.id}>
+              <div>{message.body}</div>
+              <div>
+                <small>{new Date(message.createdAt).toLocaleString()}</small>
+              </div>
+            </Box>
+          ))
         ) : (
           <div>...</div>
         )}
@@ -38,3 +46,12 @@ export const UserHomePage: React.FC = () => {
     </BasicLayout>
   );
 };
+
+const Box = styled.div`
+  border: thin solid lightgrey;
+  padding: 1rem;
+
+  &:nth-child(n + 2) {
+    border-top-style: none;
+  }
+`;
