@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
-import styled from "styled-components";
-import { useMessage, useUserRecentMessages } from "../../../data/messageHooks";
+import { useMessage } from "../../../data/messageHooks";
 import { useUserByScreenName } from "../../../data/userDbHooks";
 import { rootPath } from "../../../misc/mist";
 import { BasicLayout } from "../../layouts/basic/BasicLayout";
 import { TimelineMessage } from "../../stateless/TimelineMessage";
+import { LoadingScreen } from "../loading/LoadingScreen";
 import { NotFoundScreen } from "../notFound/NotFoundScreen";
 
 type ParamNames = "screenName" | "messageId";
@@ -23,8 +23,7 @@ export const MessageViewPage: React.FC = () => {
   }
 
   if (user === undefined) {
-    // TODO loading screen
-    return <div>Loading...</div>;
+    return <LoadingScreen />;
   }
 
   return (

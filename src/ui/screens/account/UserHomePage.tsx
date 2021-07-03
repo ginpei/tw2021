@@ -5,6 +5,7 @@ import { useUserByScreenName } from "../../../data/userDbHooks";
 import { rootPath } from "../../../misc/mist";
 import { BasicLayout } from "../../layouts/basic/BasicLayout";
 import { TimelineMessage } from "../../stateless/TimelineMessage";
+import { LoadingScreen } from "../loading/LoadingScreen";
 import { NotFoundScreen } from "../notFound/NotFoundScreen";
 
 type ParamNames = "screenName";
@@ -23,8 +24,7 @@ export const UserHomePage: React.FC = () => {
   }
 
   if (user === undefined) {
-    // TODO loading screen
-    return <div>Loading...</div>;
+    return <LoadingScreen />;
   }
 
   return (
