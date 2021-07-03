@@ -29,19 +29,7 @@ export const MessageViewPage: React.FC = () => {
 
   return (
     <BasicLayout title={`Home of ${user.name}`}>
-      <h1>{user.name}</h1>
-      <div className="messages">
-        {message ? <TimelineMessage message={message} /> : <div>...</div>}
-      </div>
+      {message ? <TimelineMessage message={message} /> : <div>...</div>}
     </BasicLayout>
   );
 };
-
-const Box = styled.div`
-  border: thin solid lightgrey;
-  padding: 1rem;
-
-  &:nth-child(n + 2) {
-    border-top-style: none;
-  }
-`;
