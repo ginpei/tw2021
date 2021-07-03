@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { MessageResolved } from "../../data/messageResolved";
 import { userHomePath } from "../screens/account/UserHomePage";
+import { messageViewPath } from "../screens/messageView/MessageViewPage";
 
 export const TimelineMessage: React.FC<{ message: MessageResolved }> = ({
   message,
@@ -14,7 +15,9 @@ export const TimelineMessage: React.FC<{ message: MessageResolved }> = ({
           {message.user?.name ?? "???"}
         </UserName>
         <Link to="#TODO">@{screenName}</Link>
-        <Link to="#TODO">{timeToString(message.createdAt)}</Link>
+        <Link to={messageViewPath(screenName, message.id)}>
+          {timeToString(message.createdAt)}
+        </Link>
       </MessageMeta>
       <div>{message.body}</div>
     </Frame>

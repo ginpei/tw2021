@@ -1,7 +1,38 @@
 import { useEffect, useState } from "react";
-import { fetchRecentGlobalMessage, fetchRecentMessageOf } from "./messageDb";
+import {
+  fetchMessage,
+  fetchRecentGlobalMessage,
+  fetchRecentMessageOf,
+} from "./messageDb";
 import { MessageResolved } from "./messageResolved";
 import { resolveMessages } from "./messageResolvedDb";
+
+export function useMessage(
+  userId: string | undefined,
+  messageId: string | undefined
+): [MessageResolved | null | undefined] {
+  const [message, setMessage] = useState<MessageResolved | null | undefined>(
+    undefined
+  );
+
+  useEffect(() => {
+    setMessage(undefined);
+
+    if (!userId || !messageId) {
+      return;
+    }
+
+    fetchMessage(messageId)
+      .then((rawMessage) => {
+        return rawMessage ? resolveMessages([rawMessage]) : null;
+      })
+      .then((newMessages) => {
+        setMessage(newMessages?.[0] ?? null);
+      });
+  }, [userId, messageId]);
+
+  return [message];
+}
 
 export function useUserRecentMessages(
   userId: string | undefined
