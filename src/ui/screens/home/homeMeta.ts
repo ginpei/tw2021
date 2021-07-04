@@ -1,4 +1,4 @@
-import { rootPath } from "../../../misc/mist";
+import { rootPath } from "../../../misc/misc";
 
 export function homePath(): string {
   return rootPath();
