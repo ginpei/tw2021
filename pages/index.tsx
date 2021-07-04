@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-export default function Home() {
+const Home: React.VFC = () => {
   return (
     <div className="index">
       <Head>
@@ -11,4 +11,6 @@ export default function Home() {
       <h1>Index /</h1>
     </div>
   );
-}
+};
+
+export default Home;
