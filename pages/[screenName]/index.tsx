@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { rootPath } from "../../src/misc/mist";
-import { UserHomePage } from "../../src/ui/screens/account/UserHomePage";
+import { UserHomePage } from "../../src/ui/screens/userHome/UserHomePage";
 
 export function userHomePath(screenName: string): string {
   return `${rootPath()}${screenName}/`;
