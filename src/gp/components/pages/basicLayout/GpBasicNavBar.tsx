@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import styles from "./GpBasicNavBar.module.scss";
 
 export type GpBasicNavBarProps = {
@@ -13,7 +13,7 @@ export const GpBasicNavBar: React.FC<GpBasicNavBarProps> = ({
   return (
     <div className={styles.root}>
       <div className="u-container">
-        <Link to={homePath}>{appName}</Link>
+        <Link href={homePath}>{appName}</Link>
       </div>
     </div>
   );

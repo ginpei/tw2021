@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { createLoggedInUser } from "../../../data/loginUser";
 import { useLoginUser, useSetLoginUser } from "../../../data/LoginUserContext";
 import { fetchUserByScreenName } from "../../../data/userDb";
@@ -22,12 +22,12 @@ export const LoginPage: React.FC = () => {
     <BasicLayout title="Login">
       <h1>Login</h1>
       <p>
-        <Link to={rootPath()}>Home</Link>
+        <Link href={rootPath()}>Home</Link>
       </p>
       {user.loggedIn && (
         <p>
           Logged in as{" "}
-          <Link to={userHomePath(user.screenName)}>
+          <Link href={userHomePath(user.screenName)}>
             {user.name} @{user.screenName}
           </Link>
         </p>

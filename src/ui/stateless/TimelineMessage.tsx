@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { MessageResolved } from "../../data/messageResolved";
 import { ModerateLink } from "../form/Links";
@@ -12,11 +11,11 @@ export const TimelineMessage: React.FC<{ message: MessageResolved }> = ({
   return (
     <Frame>
       <MessageMeta>
-        <ModerateLink to={userHomePath(screenName)}>
+        <ModerateLink href={userHomePath(screenName)}>
           <UserName>{message.user?.name ?? "???"}</UserName>{" "}
           <ScreenName>@{screenName}</ScreenName>
         </ModerateLink>
-        <ModerateLink to={messageViewPath(screenName, message.id)}>
+        <ModerateLink href={messageViewPath(screenName, message.id)}>
           <MessageTimeLink>{timeToString(message.createdAt)}</MessageTimeLink>
         </ModerateLink>
       </MessageMeta>

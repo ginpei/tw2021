@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import styled from "styled-components";
 import { BasicLayout } from "../../layouts/basic/BasicLayout";
 import { userHomePath } from "../account/UserHomePage";
@@ -12,10 +12,10 @@ export const HomePage: React.FC = () => {
         <TomatoText>HOME</TomatoText>
       </h1>
       <p>
-        <Link to={loginPath()}>Login</Link>
+        <Link href={loginPath()}>Login</Link>
       </p>
       <p>
-        <Link to={userHomePath("ginpei_jp")}>@ginpei_jp</Link>
+        <Link href={userHomePath("ginpei_jp")}>@ginpei_jp</Link>
       </p>
       <GlobalTimeline />
     </BasicLayout>

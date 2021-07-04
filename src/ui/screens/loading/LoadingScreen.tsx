@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import Head from "next/head";
 import { GpBasicNavBar } from "../../../gp/components/pages/basicLayout/GpBasicNavBar";
 import { rootPath } from "../../../misc/mist";
 
@@ -7,9 +7,9 @@ export const LoadingScreen: React.VFC<{ title?: string }> = ({
 }) => {
   return (
     <div className="BasicLayout">
-      <Helmet>
+      <Head>
         <title>{title}</title>
-      </Helmet>
+      </Head>
       <GpBasicNavBar appName="Tw" homePath={rootPath()} />
     </div>
   );

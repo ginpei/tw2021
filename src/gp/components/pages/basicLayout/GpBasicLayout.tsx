@@ -1,8 +1,8 @@
+import Head from "next/head";
 import { ReactElement } from "react";
-import { Helmet } from "react-helmet-async";
+import styles from "./GpBasicLayout.module.scss";
 import { GpBasicLayoutFooter } from "./GpBasicLayoutFooter";
 import { GpBasicNavBar, GpBasicNavBarProps } from "./GpBasicNavBar";
-import styles from "./GpBasicLayout.module.scss";
 
 export type GpBasicLayoutProps = GpBasicNavBarProps & {
   title: string;
@@ -18,9 +18,9 @@ export const GpBasicLayout: React.FC<GpBasicLayoutProps> = ({
 }) => {
   return (
     <div className="BasicLayout">
-      <Helmet>
+      <Head>
         <title>{title}</title>
-      </Helmet>
+      </Head>
       <GpBasicNavBar {...{ appName, homePath }} />
       <div className={styles.main}>
         <div className="u-container">{children}</div>

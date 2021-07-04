@@ -1,3 +1,4 @@
+import { ComponentType } from "react";
 import { StyledComponentProps as StyledComponentPropsOrig } from "styled-components";
 
 /**
@@ -8,14 +9,16 @@ import { StyledComponentProps as StyledComponentPropsOrig } from "styled-compone
  *   return <input {...props} />;
  * }
  */
-export type StyledComponentProps<T> = StyledComponentPropsOrig<
-  "input",
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  any,
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  {},
-  never
->;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type StyledComponentProps<T extends string | ComponentType<any>> =
+  StyledComponentPropsOrig<
+    T,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    any,
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    {},
+    never
+  >;
 
 export function sleep(ms: number): Promise<void> {
   return new Promise((f) => setTimeout(f, ms));
