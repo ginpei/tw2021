@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { GpBasicNavBar } from "../../../gp/components/pages/basicLayout/GpBasicNavBar";
-import { rootPath } from "../../../misc/mist";
+import { homePath } from "../home/homeMeta";
 
 export const LoadingScreen: React.VFC<{ title?: string }> = ({
   title = "Tw",
@@ -10,7 +10,7 @@ export const LoadingScreen: React.VFC<{ title?: string }> = ({
       <Head>
         <title>{title}</title>
       </Head>
-      <GpBasicNavBar appName="Tw" homePath={rootPath()} />
+      <GpBasicNavBar appName="Tw" homePath={homePath()} />
     </div>
   );
 };

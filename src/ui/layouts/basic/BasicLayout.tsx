@@ -1,5 +1,5 @@
 import { GpBasicLayout } from "../../../gp/components/pages/basicLayout/GpBasicLayout";
-import { rootPath } from "../../../misc/mist";
+import { homePath } from "../../screens/home/homeMeta";
 import { BasicLayoutFooter } from "./BasicLayoutFooter";
 
 export const BasicLayout: React.FC<{ title: string }> = ({
@@ -10,7 +10,7 @@ export const BasicLayout: React.FC<{ title: string }> = ({
     <GpBasicLayout
       appName="Tw"
       FooterContent={<BasicLayoutFooter />}
-      homePath={rootPath()}
+      homePath={homePath()}
       title={title}
     >
       {children}

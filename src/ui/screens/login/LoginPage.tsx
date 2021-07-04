@@ -3,12 +3,12 @@ import { ChangeEvent, useState } from "react";
 import { createLoggedInUser } from "../../../data/loginUser";
 import { useLoginUser, useSetLoginUser } from "../../../data/LoginUserContext";
 import { fetchUserByScreenName } from "../../../data/userDb";
-import { rootPath } from "../../../misc/mist";
 import { sleep } from "../../../misc/util";
 import { LineLabel } from "../../form/LineLabel";
 import { NiceButton } from "../../form/NiceButton";
 import { NiceInput } from "../../form/NiceInput";
 import { BasicLayout } from "../../layouts/basic/BasicLayout";
+import { homePath } from "../home/homeMeta";
 import { userHomePath } from "../userHome/userHomeMeta";
 
 export const LoginPage: React.FC = () => {
@@ -18,7 +18,7 @@ export const LoginPage: React.FC = () => {
     <BasicLayout title="Login">
       <h1>Login</h1>
       <p>
-        <Link href={rootPath()}>Home</Link>
+        <Link href={homePath()}>Home</Link>
       </p>
       {user.loggedIn && (
         <p>
