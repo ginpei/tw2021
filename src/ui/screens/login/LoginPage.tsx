@@ -1,5 +1,6 @@
-import { ChangeEvent, useState } from "react";
 import Link from "next/link";
+import { ChangeEvent, useState } from "react";
+import { userHomePath } from "../../../../pages/[screenName]";
 import { createLoggedInUser } from "../../../data/loginUser";
 import { useLoginUser, useSetLoginUser } from "../../../data/LoginUserContext";
 import { fetchUserByScreenName } from "../../../data/userDb";
@@ -9,7 +10,6 @@ import { LineLabel } from "../../form/LineLabel";
 import { NiceButton } from "../../form/NiceButton";
 import { NiceInput } from "../../form/NiceInput";
 import { BasicLayout } from "../../layouts/basic/BasicLayout";
-import { userHomePath } from "../account/UserHomePage";
 
 export function loginPath(): string {
   return `${rootPath()}login/`;
@@ -28,7 +28,9 @@ export const LoginPage: React.FC = () => {
         <p>
           Logged in as{" "}
           <Link href={userHomePath(user.screenName)}>
-            {user.name} @{user.screenName}
+            <a>
+              {user.name} @{user.screenName}
+            </a>
           </Link>
         </p>
       )}

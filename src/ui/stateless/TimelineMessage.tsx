@@ -1,8 +1,8 @@
 import styled from "styled-components";
+import { userHomePath } from "../../../pages/[screenName]";
+import { messageViewPath } from "../../../pages/[screenName]/[messageId]";
 import { MessageResolved } from "../../data/messageResolved";
 import { ModerateLink } from "../form/Links";
-import { userHomePath } from "../screens/account/UserHomePage";
-import { messageViewPath } from "../screens/messageView/MessageViewPage";
 
 export const TimelineMessage: React.FC<{ message: MessageResolved }> = ({
   message,

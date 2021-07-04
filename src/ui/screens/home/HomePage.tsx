@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
+import { userHomePath } from "../../../../pages/[screenName]";
 import { BasicLayout } from "../../layouts/basic/BasicLayout";
-import { userHomePath } from "../account/UserHomePage";
 import { loginPath } from "../login/LoginPage";
 import { GlobalTimeline } from "./GlobalTimeline";
 

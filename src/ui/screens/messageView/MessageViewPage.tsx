@@ -1,23 +1,16 @@
-import { useRouter } from "next/router";
 import { useMessage } from "../../../data/messageHooks";
-import { MessageResolved } from "../../../data/messageResolved";
 import { useUserByScreenName } from "../../../data/userDbHooks";
-import { rootPath } from "../../../misc/mist";
 import { BasicLayout } from "../../layouts/basic/BasicLayout";
-// import { TimelineMessage } from "../../stateless/TimelineMessage";
+import { TimelineMessage } from "../../stateless/TimelineMessage";
 import { LoadingScreen } from "../loading/LoadingScreen";
 import { NotFoundScreen } from "../notFound/NotFoundScreen";
 
-type ParamNames = "screenName" | "messageId";
-
-export function messageViewPath(screenName: string, messageId: string): string {
-  return `${rootPath()}${screenName}/${messageId}/`;
-}
-
-export const MessageViewPage: React.FC = () => {
-  const params = useRouter().query as Record<ParamNames, string>;
-  const [user] = useUserByScreenName(params.screenName);
-  const [message] = useMessage(user?.id, params.messageId);
+export const MessageViewPage: React.FC<{
+  messageId: string;
+  screenName: string;
+}> = ({ messageId, screenName }) => {
+  const [user] = useUserByScreenName(screenName);
+  const [message] = useMessage(user?.id, messageId);
 
   if (user === null || message === null) {
     return <NotFoundScreen />;
@@ -32,11 +25,4 @@ export const MessageViewPage: React.FC = () => {
       {message ? <TimelineMessage message={message} /> : <div>...</div>}
     </BasicLayout>
   );
-};
-
-// TODO
-const TimelineMessage: React.FC<{ message: MessageResolved }> = ({
-  message,
-}) => {
-  return <div className="TimelineMessage">{message.body}</div>;
 };
