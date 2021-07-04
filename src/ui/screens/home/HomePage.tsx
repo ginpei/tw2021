@@ -1,8 +1,8 @@
 import Link from "next/link";
 import styled from "styled-components";
-import { userHomePath } from "../../../../pages/[screenName]";
 import { BasicLayout } from "../../layouts/basic/BasicLayout";
-import { loginPath } from "../login/LoginPage";
+import { loginPath } from "../login/loginMeta";
+import { userHomePath } from "../userHome/userHomeMeta";
 import { GlobalTimeline } from "./GlobalTimeline";
 
 export const HomePage: React.FC = () => {

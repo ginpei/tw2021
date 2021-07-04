@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ChangeEvent, useState } from "react";
-import { userHomePath } from "../../../../pages/[screenName]";
 import { createLoggedInUser } from "../../../data/loginUser";
 import { useLoginUser, useSetLoginUser } from "../../../data/LoginUserContext";
 import { fetchUserByScreenName } from "../../../data/userDb";
@@ -10,10 +9,7 @@ import { LineLabel } from "../../form/LineLabel";
 import { NiceButton } from "../../form/NiceButton";
 import { NiceInput } from "../../form/NiceInput";
 import { BasicLayout } from "../../layouts/basic/BasicLayout";
-
-export function loginPath(): string {
-  return `${rootPath()}login/`;
-}
+import { userHomePath } from "../userHome/userHomeMeta";
 
 export const LoginPage: React.FC = () => {
   const user = useLoginUser();
