@@ -12,7 +12,7 @@ export const ModerateLink: React.FC<{ href: string } & LinkProps> = (props) => {
   );
 };
 
-export const ModerateAElement = styled.a`
+const ModerateAElement = styled.a`
   text-decoration: none;
 
   &:hover {
