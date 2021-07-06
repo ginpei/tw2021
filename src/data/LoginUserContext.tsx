@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { LoginUser } from "./loginUser";
+import { logIn, LoginCert, logOut } from "./loginUserData";
 
 export interface LoginUserContextValue {
   setUser: (user: LoginUser) => void;
@@ -56,7 +57,20 @@ export function useLoginUser(): LoginUser {
   return user;
 }
 
-export function useSetLoginUser(): (user: LoginUser) => void {
+export function useLoginMethod(): {
+  logIn: (cert: LoginCert) => Promise<void>;
+  logOut: () => Promise<void>;
+} {
   const { setUser } = useContext(LoginUserContext);
-  return setUser;
+  return { logIn: logInMethod, logOut: logOutMethod };
+
+  async function logInMethod(cert: LoginCert) {
+    const newUser = await logIn(cert);
+    setUser(newUser);
+  }
+
+  async function logOutMethod() {
+    await logOut();
+    setUser({ loggedIn: false });
+  }
 }

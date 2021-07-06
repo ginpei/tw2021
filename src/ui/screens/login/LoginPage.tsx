@@ -1,9 +1,7 @@
 import Link from "next/link";
 import { ChangeEvent, useState } from "react";
-import { createLoggedInUser } from "../../../data/loginUser";
-import { useLoginUser, useSetLoginUser } from "../../../data/LoginUserContext";
-import { fetchUserByScreenName } from "../../../data/userDb";
-import { sleep } from "../../../misc/util";
+import { useLoginMethod, useLoginUser } from "../../../data/LoginUserContext";
+import { assureError } from "../../../misc/misc";
 import { LineLabel } from "../../form/LineLabel";
 import { NiceButton } from "../../form/NiceButton";
 import { NiceInput } from "../../form/NiceInput";
@@ -36,7 +34,7 @@ export const LoginPage: React.FC = () => {
 };
 
 const LogInForm: React.FC = () => {
-  const setUser = useSetLoginUser();
+  const { logIn } = useLoginMethod();
   const [screenName, setScreenName] = useState("");
   const [dirty, setDirty] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -49,15 +47,14 @@ const LogInForm: React.FC = () => {
   const onClick = async () => {
     setErrorMessage("");
     setDirty(true);
-    await sleep(1000);
-    const user = await fetchUserByScreenName(screenName);
-    if (!user) {
-      setErrorMessage("Failed to log in");
+    try {
+      await logIn({ screenName });
+    } catch (error) {
+      setErrorMessage(assureError(error).message);
+
+      // revert only if global state is not changed
       setDirty(false);
-      return;
     }
-    const loggedInUser = createLoggedInUser({ ...user });
-    setUser(loggedInUser);
   };
 
   return (
@@ -79,13 +76,12 @@ const LogInForm: React.FC = () => {
 };
 
 const LogOutForm: React.FC = () => {
-  const setUser = useSetLoginUser();
+  const { logOut } = useLoginMethod();
   const [dirty, setDirty] = useState(false);
 
   const onClick = async () => {
     setDirty(true);
-    await sleep(500);
-    setUser({ loggedIn: false });
+    logOut();
   };
 
   return (
