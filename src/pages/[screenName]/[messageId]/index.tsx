@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { MessageViewPage } from "../../../src/ui/screens/messageView/MessageViewPage";
+import { MessageViewPage } from "../../../ui/screens/messageView/MessageViewPage";
 
 type ParamNames = "screenName" | "messageId";
 

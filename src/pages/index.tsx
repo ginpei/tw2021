@@ -1,4 +1,4 @@
-import { HomePage } from "../src/ui/screens/home/HomePage";
+import { HomePage } from "../ui/screens/home/HomePage";
 
 const HomeRoute: React.VFC = () => {
   return <HomePage />;

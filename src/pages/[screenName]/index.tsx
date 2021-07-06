@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { UserHomePage } from "../../src/ui/screens/userHome/UserHomePage";
+import { UserHomePage } from "../../ui/screens/userHome/UserHomePage";
 
 const UserHomeRoute: React.FC = () => {
   const { screenName } = useRouter().query as Record<"screenName", string>;
