@@ -18,16 +18,24 @@ Includes such like `useFooBar()`, `<FooBarProvider>`
 
 Until dependency data is ready, it would accept `id` as `undefined` and return `undefined` always.
 
+```ts
+function useFooBar(id: string | undefined): [FooBar | null | undefined] {
+  // ...
+}
+```
+
 ```tsx
-const [fooBar] = useFooBar(id);
+const FooBarView: React.VFC<{ id: string | undefined }> = ({ id }) => {
+  const [fooBar] = useFooBar(id);
 
-if (fooBar === undefined) {
-  return <>Loading...</>;
+  if (fooBar === undefined) {
+    return <>Loading...</>;
+  }
+
+  if (fooBar === null) {
+    return <>Not found</>;
+  }
+
+  return <>{String(fooBar)}</>;
 }
-
-if (fooBar === null) {
-  return <>Not found</>;
-}
-
-return <>{String(fooBar)}</>;
 ```
