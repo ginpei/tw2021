@@ -1,7 +1,7 @@
 import { Message } from "./message";
 import { MessageResolved } from "./messageResolved";
 import { User } from "./user";
-import { fetchUser } from "./userDb";
+import { fetchUser } from "./userData";
 
 export async function resolveMessages(
   messages: Message[]

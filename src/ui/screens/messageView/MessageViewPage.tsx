@@ -1,5 +1,5 @@
-import { useMessage } from "../../../data/messageHooks";
-import { useUserByScreenName } from "../../../data/userDbHooks";
+import { useMessage } from "../../../data/messageResolvedHooks";
+import { useUserByScreenName } from "../../../data/userHooks";
 import { BasicLayout } from "../../layouts/basic/BasicLayout";
 import { TimelineMessage } from "../../stateless/TimelineMessage";
 import { LoadingScreen } from "../loading/LoadingScreen";

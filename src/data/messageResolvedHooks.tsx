@@ -3,9 +3,9 @@ import {
   fetchMessage,
   fetchRecentGlobalMessage,
   fetchRecentMessageOf,
-} from "./messageDb";
+} from "./messageData";
 import { MessageResolved } from "./messageResolved";
-import { resolveMessages } from "./messageResolvedDb";
+import { resolveMessages } from "./messageResolvedData";
 
 export function useMessage(
   userId: string | undefined,

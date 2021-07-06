@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { useUserRecentMessages } from "../../../data/messageHooks";
-import { useUserByScreenName } from "../../../data/userDbHooks";
+import { useUserRecentMessages } from "../../../data/messageResolvedHooks";
+import { useUserByScreenName } from "../../../data/userHooks";
 import { BasicLayout } from "../../layouts/basic/BasicLayout";
 import { TimelineMessage } from "../../stateless/TimelineMessage";
 import { LoadingScreen } from "../loading/LoadingScreen";

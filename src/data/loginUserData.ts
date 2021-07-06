@@ -1,6 +1,6 @@
 import { sleep } from "../misc/util";
 import { createLoggedInUser, LoginUser } from "./loginUser";
-import { fetchUserByScreenName } from "./userDb";
+import { fetchUserByScreenName } from "./userData";
 
 export interface LoginCert {
   screenName: string;

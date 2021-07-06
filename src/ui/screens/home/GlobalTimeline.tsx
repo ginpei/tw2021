@@ -1,4 +1,4 @@
-import { useGlobalTimeline } from "../../../data/messageHooks";
+import { useGlobalTimeline } from "../../../data/messageResolvedHooks";
 import { TimelineMessage } from "../../stateless/TimelineMessage";
 
 export const GlobalTimeline: React.FC = () => {

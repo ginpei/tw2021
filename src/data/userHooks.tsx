@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { User } from "./user";
-import { fetchUserByScreenName } from "./userDb";
+import { fetchUserByScreenName } from "./userData";
 
 /**
  * Returns `undefined` until completely fetched.
