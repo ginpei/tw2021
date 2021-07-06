@@ -3,9 +3,14 @@
   --base-bg: #fff;
   --base-fg: #333;
   --base-border-color: #ccc;
+  --box-bg: rgb(239, 239, 239);
+  --box-border-color: var(--spectrum-alias-border-color, var(--spectrum-global-color-gray-400, rgb(118, 118, 118)));
+  --box-border-radius: var(--spectrum-alias-border-radius-regular, var(--spectrum-global-dimension-size-50, 2px));
+  --box-border-width: var(--spectrum-alias-border-size-thin, var(--spectrum-global-dimension-static-size-10, 0.5px));
+  --box-fg: var(--spectrum-alias-text-color, var(--spectrum-global-color-gray-800, var(--base-fg)));
   --disabled-fg: #999;
-  --link-fg: #00c;
-  --link-hover-fg: #c00;
+  --link-fg: var(--spectrum-global-color-blue-600, #00c);
+  --link-hover-fg: var(--spectrum-global-color-red-600, #c00);
   --table-border-color: #ccc;
   --table-header-bg: #666;
   --table-header-fg: #fff;
