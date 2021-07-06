@@ -7,6 +7,7 @@ import { GpBasicNavBar, GpBasicNavBarProps } from "./GpBasicNavBar";
 export type GpBasicLayoutProps = GpBasicNavBarProps & {
   title: string;
   FooterContent: ReactElement;
+  NavBarContent: ReactElement;
 };
 
 export const GpBasicLayout: React.FC<GpBasicLayoutProps> = ({
@@ -14,6 +15,7 @@ export const GpBasicLayout: React.FC<GpBasicLayoutProps> = ({
   children,
   FooterContent,
   homePath,
+  NavBarContent,
   title,
 }) => {
   return (
@@ -21,7 +23,7 @@ export const GpBasicLayout: React.FC<GpBasicLayoutProps> = ({
       <Head>
         <title>{title}</title>
       </Head>
-      <GpBasicNavBar {...{ appName, homePath }} />
+      <GpBasicNavBar {...{ appName, homePath }}>{NavBarContent}</GpBasicNavBar>
       <div className={styles.main}>
         <div className="u-container">{children}</div>
       </div>

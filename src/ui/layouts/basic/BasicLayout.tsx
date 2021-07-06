@@ -11,9 +11,18 @@ export const BasicLayout: React.FC<{ title: string }> = ({
       appName="Tw"
       FooterContent={<BasicLayoutFooter />}
       homePath={homePath()}
+      NavBarContent={<NavBarContent />}
       title={title}
     >
       {children}
     </GpBasicLayout>
+  );
+};
+
+const NavBarContent: React.FC = () => {
+  return (
+    <div className="NavBarContent">
+      <span>NavBarContent</span>
+    </div>
   );
 };

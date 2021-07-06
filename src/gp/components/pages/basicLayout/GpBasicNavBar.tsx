@@ -8,12 +8,18 @@ export type GpBasicNavBarProps = {
 
 export const GpBasicNavBar: React.FC<GpBasicNavBarProps> = ({
   appName,
+  children,
   homePath,
 }) => {
   return (
     <div className={styles.root}>
       <div className="u-container">
-        <Link href={homePath}>{appName}</Link>
+        <div className={styles.frame}>
+          <div className={styles.start}>
+            <Link href={homePath}>{appName}</Link>
+          </div>
+          <div className={styles.end}>{children}</div>
+        </div>
       </div>
     </div>
   );

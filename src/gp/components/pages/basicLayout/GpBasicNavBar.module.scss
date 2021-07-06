@@ -14,3 +14,21 @@
     }
   }
 }
+
+.frame {
+  display: flex;
+  gap: 1rem;
+  overflow: auto;
+  width: 100%;
+}
+
+.start {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.end {
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+}
