@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ChangeEvent, useState } from "react";
 import { useLoginMethod, useLoginUser } from "../../../data/LoginUserContext";
-import { assureError } from "../../../misc/misc";
+import { assureError } from "../../../misc/util";
 import { LineLabel } from "../../form/LineLabel";
 import { NiceButton } from "../../form/NiceButton";
 import { NiceInput } from "../../form/NiceInput";
