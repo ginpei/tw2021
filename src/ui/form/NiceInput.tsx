@@ -1,10 +1,9 @@
-import React, { useCallback } from "react";
+import React, { InputHTMLAttributes, useCallback } from "react";
 import styled from "styled-components";
-import { StyledComponentProps } from "../../misc/util";
 
-type NiceInputProps = StyledComponentProps<"input">;
+type InputProps = InputHTMLAttributes<HTMLInputElement>;
 
-export const NiceInput: React.FC<NiceInputProps> = ({ onFocus, ...props }) => {
+export const NiceInput: React.FC<InputProps> = ({ onFocus, ...props }) => {
   const onElementFocus: React.FocusEventHandler<HTMLInputElement> = useCallback(
     (event) => {
       if (onFocus) {

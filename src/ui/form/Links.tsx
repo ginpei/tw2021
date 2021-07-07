@@ -1,8 +1,8 @@
 import Link from "next/link";
+import { AnchorHTMLAttributes } from "react";
 import styled from "styled-components";
-import { StyledComponentProps } from "../../misc/util";
 
-type LinkProps = StyledComponentProps<"a">;
+type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement>;
 
 export const ModerateLink: React.FC<{ href: string } & LinkProps> = (props) => {
   return (
