@@ -35,8 +35,10 @@ export function useMessage(
 }
 
 export function useUserRecentMessages(
-  userId: string | undefined
+  userId: string | undefined,
+  limit: number
 ): [MessageResolved[] | undefined, Error | null] {
+  const [offset] = useState(0);
   const [messages, setMessages] = useState<MessageResolved[] | undefined>(
     undefined
   );
@@ -49,7 +51,7 @@ export function useUserRecentMessages(
       return;
     }
 
-    fetchRecentUserMessages(userId)
+    fetchRecentUserMessages(userId, offset, limit)
       .then((rawMessages) => {
         return resolveMessages(rawMessages);
       })
@@ -57,7 +59,7 @@ export function useUserRecentMessages(
         setMessages(newMessages);
       })
       .catch((v) => setError(v));
-  }, [userId]);
+  }, [limit, offset, userId]);
 
   return [messages, error];
 }

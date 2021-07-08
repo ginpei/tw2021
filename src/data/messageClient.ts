@@ -14,13 +14,15 @@ export async function fetchMessage(id: string): Promise<Message | null> {
 }
 
 export async function fetchRecentUserMessages(
-  userId: string
+  userId: string,
+  offset: number,
+  limit: number
 ): Promise<Message[]> {
   const url = new URL(window.location.href);
   url.pathname = "/api/messages/user";
   url.searchParams.set("userId", userId);
-  url.searchParams.set("offset", "0");
-  url.searchParams.set("limit", "30");
+  url.searchParams.set("offset", String(offset));
+  url.searchParams.set("limit", String(limit));
   const res = await fetch(url.toString());
   const rawData = await res.json();
 

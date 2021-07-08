@@ -12,7 +12,8 @@ export const UserHomePage: React.FC<{ screenName: string }> = ({
 }) => {
   const [user] = useUserByScreenName(screenName);
   const [messages, messagesError] = useUserRecentMessages(
-    user?.id ?? undefined
+    user?.id ?? undefined,
+    30
   );
 
   if (user === null) {
