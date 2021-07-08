@@ -8,7 +8,10 @@ const path = require("path");
  * @typedef {import("../src/data/message").Message} Message
  */
 
-const outputPath = path.resolve(__dirname, "../src/data/messageDb.dummy.json");
+const outputPath = path.resolve(
+  __dirname,
+  "../src/_fixture/messageData.dummy.json"
+);
 
 const numOfMessages = 100;
 

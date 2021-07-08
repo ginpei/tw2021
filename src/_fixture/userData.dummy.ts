@@ -1,4 +1,4 @@
-import { createUser, User } from "./user";
+import { createUser, User } from "../data/user";
 
 const dummyUserDatabase: User[] = [
   createUser({

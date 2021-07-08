@@ -1,6 +1,6 @@
 import { sleep } from "../misc/util";
 import { User } from "./user";
-import dummyUserDatabase from "./userData.dummy";
+import dummyUserDatabase from "../_fixture/userData.dummy";
 
 const database: User[] = dummyUserDatabase;
 
