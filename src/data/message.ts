@@ -1,13 +1,16 @@
-import { createDataRecord, DataRecord } from "../gp/data/DataRecord";
+import { z } from "zod";
+import { createDataRecord, dataRecordSchema } from "../gp/data/DataRecord";
 
 /**
  * Core data of message.
  * Mostly you would use `MessageResolved` instead.
  */
-export interface Message extends DataRecord {
-  body: string;
-  userId: string;
-}
+export type Message = z.infer<typeof messageSchema>;
+
+export const messageSchema = dataRecordSchema.extend({
+  body: z.string(),
+  userId: z.string(),
+});
 
 export function createMessage(initial: Partial<Message> = {}): Message {
   return {

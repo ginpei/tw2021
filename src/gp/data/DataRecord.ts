@@ -1,11 +1,12 @@
-/**
- * Data on Redux.
- */
-export interface DataRecord {
-  createdAt: number;
-  id: string;
-  updatedAt: number;
-}
+import { z } from "zod";
+
+export type DataRecord = z.infer<typeof dataRecordSchema>;
+
+export const dataRecordSchema = z.object({
+  createdAt: z.number(),
+  id: z.string(),
+  updatedAt: z.number(),
+});
 
 export function createDataRecord(initial?: Partial<DataRecord>): DataRecord {
   return {
