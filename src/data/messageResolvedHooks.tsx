@@ -3,7 +3,7 @@ import {
   fetchMessage,
   fetchRecentGlobalMessage,
   fetchRecentMessageOf,
-} from "./messageData";
+} from "./messageClient";
 import { MessageResolved } from "./messageResolved";
 import { resolveMessages } from "./messageResolvedData";
 
