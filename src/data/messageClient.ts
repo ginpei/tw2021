@@ -20,7 +20,7 @@ export async function fetchRecentMessageOf(userId: string): Promise<Message[]> {
 }
 
 export async function fetchRecentGlobalMessage(): Promise<MessageResolved[]> {
-  const path = "/api/messages/list";
+  const path = "/api/messages/global";
   const res = await fetch(path);
   const data = await res.json();
   const messages = data.messages as MessageResolved[];
