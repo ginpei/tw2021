@@ -1,4 +1,4 @@
-import dummyMessageDatabase from "../_fixture/messageData.dummy.json";
+import dummyMessageDatabase from "../_fixture/messageData.dummy";
 import dummyUserDatabase from "../_fixture/userData.dummy";
 import { MessageResolved } from "./messageResolved";
 

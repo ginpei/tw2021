@@ -1,5 +1,5 @@
 import { sleep } from "../misc/util";
-import dummyMessageDatabase from "../_fixture/messageData.dummy.json";
+import dummyMessageDatabase from "../_fixture/messageData.dummy";
 import { Message } from "./message";
 import { MessageResolved } from "./messageResolved";
 
