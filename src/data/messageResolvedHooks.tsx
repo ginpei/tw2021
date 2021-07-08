@@ -36,10 +36,11 @@ export function useMessage(
 
 export function useUserRecentMessages(
   userId: string | undefined
-): [MessageResolved[] | undefined] {
+): [MessageResolved[] | undefined, Error | null] {
   const [messages, setMessages] = useState<MessageResolved[] | undefined>(
     undefined
   );
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     setMessages(undefined);
@@ -54,10 +55,11 @@ export function useUserRecentMessages(
       })
       .then((newMessages) => {
         setMessages(newMessages);
-      });
+      })
+      .catch((v) => setError(v));
   }, [userId]);
 
-  return [messages];
+  return [messages, error];
 }
 
 export function useGlobalTimeline(): [MessageResolved[] | undefined] {

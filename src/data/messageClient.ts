@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { sleep } from "../misc/util";
 import dummyMessageDatabase from "../_fixture/messageData.dummy";
+import { AppServerError } from "./appServerError";
 import { Message } from "./message";
 import { MessageResolved, messageResolvedSchema } from "./messageResolved";
 
@@ -22,6 +23,10 @@ export async function fetchRecentUserMessages(
   url.searchParams.set("limit", "30");
   const res = await fetch(url.toString());
   const rawData = await res.json();
+
+  if (!res.ok) {
+    throw new AppServerError(rawData);
+  }
 
   const schema = z.object({
     messages: z.array(messageResolvedSchema),

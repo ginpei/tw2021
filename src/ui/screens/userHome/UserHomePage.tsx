@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useUserRecentMessages } from "../../../data/messageResolvedHooks";
 import { useUserByScreenName } from "../../../data/userHooks";
 import { BasicLayout } from "../../layouts/basic/BasicLayout";
+import { ErrorMessage } from "../../stateless/ErrorMessage";
 import { TimelineMessage } from "../../stateless/TimelineMessage";
 import { LoadingScreen } from "../loading/LoadingScreen";
 import { NotFoundScreen } from "../notFound/NotFoundScreen";
@@ -10,7 +11,9 @@ export const UserHomePage: React.FC<{ screenName: string }> = ({
   screenName,
 }) => {
   const [user] = useUserByScreenName(screenName);
-  const [messages] = useUserRecentMessages(user?.id ?? undefined);
+  const [messages, messagesError] = useUserRecentMessages(
+    user?.id ?? undefined
+  );
 
   if (user === null) {
     return <NotFoundScreen />;
@@ -23,15 +26,19 @@ export const UserHomePage: React.FC<{ screenName: string }> = ({
   return (
     <BasicLayout title={`Home of ${user.name}`}>
       <h1>{user.name}</h1>
-      <div className="messages">
-        {messages ? (
-          messages.map((message) => (
-            <TimelineMessage key={message.id} message={message} />
-          ))
-        ) : (
-          <div>...</div>
-        )}
-      </div>
+      {messagesError ? (
+        <ErrorMessage error={messagesError} />
+      ) : (
+        <div className="messages">
+          {messages ? (
+            messages.map((message) => (
+              <TimelineMessage key={message.id} message={message} />
+            ))
+          ) : (
+            <div>...</div>
+          )}
+        </div>
+      )}
     </BasicLayout>
   );
 };
