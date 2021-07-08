@@ -68,13 +68,9 @@ export function useGlobalTimeline(): [MessageResolved[] | undefined] {
   useEffect(() => {
     setMessages(undefined);
 
-    fetchRecentGlobalMessage()
-      .then((rawMessages) => {
-        return resolveMessages(rawMessages);
-      })
-      .then((newMessages) => {
-        setMessages(newMessages);
-      });
+    fetchRecentGlobalMessage().then((newMessages) => {
+      setMessages(newMessages);
+    });
   }, []);
 
   return [messages];
