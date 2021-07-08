@@ -24,7 +24,7 @@ export async function loadRecentUserMessages(
   const plainMessages = dummyMessageDatabase
     .filter((v) => v.userId === userId)
     .sort((v, u) => u.createdAt - v.createdAt)
-    .slice(offset, offset + limit - 1);
+    .slice(offset, offset + limit);
 
   const messages = plainMessages.map((record) => {
     const user = dummyUserDatabase.find((v) => v.id === record.userId) ?? null;
