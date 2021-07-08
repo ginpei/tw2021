@@ -1,6 +1,7 @@
 import { sleep } from "../misc/util";
-import { Message } from "./message";
 import dummyMessageDatabase from "../_fixture/messageData.dummy.json";
+import { Message } from "./message";
+import { MessageResolved } from "./messageResolved";
 
 const database: Message[] = dummyMessageDatabase;
 
@@ -19,9 +20,9 @@ export async function fetchRecentMessageOf(userId: string): Promise<Message[]> {
 }
 
 export async function fetchRecentGlobalMessage(): Promise<Message[]> {
-  await sleep(500);
-  const messages = database
-    .sort((v, u) => u.createdAt - v.createdAt)
-    .slice(0, 30);
+  const path = "/api/messages/list";
+  const res = await fetch(path);
+  const data = await res.json();
+  const messages = data.messages as MessageResolved[];
   return messages;
 }
