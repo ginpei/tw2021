@@ -11,11 +11,17 @@ export async function fetchMessage(id: string): Promise<Message | null> {
   return message;
 }
 
-export async function fetchRecentMessageOf(userId: string): Promise<Message[]> {
-  await sleep(500);
-  const messages = database
-    .filter((v) => v.userId === userId)
-    .sort((v, u) => u.createdAt - v.createdAt);
+export async function fetchRecentUserMessages(
+  userId: string
+): Promise<Message[]> {
+  const url = new URL(window.location.href);
+  url.pathname = "/api/messages/user";
+  url.searchParams.set("userId", userId);
+  url.searchParams.set("offset", "0");
+  url.searchParams.set("limit", "30");
+  const res = await fetch(url.toString());
+  const data = await res.json();
+  const messages = data.messages as MessageResolved[];
   return messages;
 }
 

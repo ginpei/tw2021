@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import {
   fetchMessage,
   fetchRecentGlobalMessage,
-  fetchRecentMessageOf,
+  fetchRecentUserMessages,
 } from "./messageClient";
 import { MessageResolved } from "./messageResolved";
 import { resolveMessages } from "./messageResolvedData";
@@ -48,7 +48,7 @@ export function useUserRecentMessages(
       return;
     }
 
-    fetchRecentMessageOf(userId)
+    fetchRecentUserMessages(userId)
       .then((rawMessages) => {
         return resolveMessages(rawMessages);
       })
