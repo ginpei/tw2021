@@ -1,7 +1,8 @@
+import { z } from "zod";
 import { sleep } from "../misc/util";
 import dummyMessageDatabase from "../_fixture/messageData.dummy";
 import { Message } from "./message";
-import { MessageResolved } from "./messageResolved";
+import { MessageResolved, messageResolvedSchema } from "./messageResolved";
 
 const database: Message[] = dummyMessageDatabase;
 
@@ -20,15 +21,25 @@ export async function fetchRecentUserMessages(
   url.searchParams.set("offset", "0");
   url.searchParams.set("limit", "30");
   const res = await fetch(url.toString());
-  const data = await res.json();
-  const messages = data.messages as MessageResolved[];
-  return messages;
+  const rawData = await res.json();
+
+  const schema = z.object({
+    messages: z.array(messageResolvedSchema),
+  });
+  const data = schema.parse(rawData);
+
+  return data.messages;
 }
 
 export async function fetchRecentGlobalMessage(): Promise<MessageResolved[]> {
   const path = "/api/messages/global";
   const res = await fetch(path);
-  const data = await res.json();
-  const messages = data.messages as MessageResolved[];
-  return messages;
+  const rawData = await res.json();
+
+  const schema = z.object({
+    messages: z.array(messageResolvedSchema),
+  });
+  const data = schema.parse(rawData);
+
+  return data.messages;
 }
