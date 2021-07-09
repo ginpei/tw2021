@@ -1,8 +1,13 @@
 import { useGlobalTimeline } from "../../../data/messageResolvedHooks";
+import { ErrorMessage } from "../../stateless/ErrorMessage";
 import { TimelineMessage } from "../../stateless/TimelineMessage";
 
 export const GlobalTimeline: React.FC = () => {
-  const [messages] = useGlobalTimeline();
+  const [messages, error] = useGlobalTimeline();
+
+  if (error) {
+    return <ErrorMessage error={error} />;
+  }
 
   if (!messages) {
     return <>...</>;

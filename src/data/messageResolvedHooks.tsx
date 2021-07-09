@@ -61,18 +61,22 @@ export function useUserRecentMessages(
   return [messages, error];
 }
 
-export function useGlobalTimeline(): [MessageResolved[] | undefined] {
+export function useGlobalTimeline(): [
+  MessageResolved[] | undefined,
+  Error | null
+] {
   const [messages, setMessages] = useState<MessageResolved[] | undefined>(
     undefined
   );
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     setMessages(undefined);
 
-    fetchRecentGlobalMessage().then((newMessages) => {
-      setMessages(newMessages);
-    });
+    fetchRecentGlobalMessage()
+      .then((newMessages) => setMessages(newMessages))
+      .catch((v) => setError(v));
   }, []);
 
-  return [messages];
+  return [messages, error];
 }
