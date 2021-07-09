@@ -18,8 +18,14 @@ export async function fetchMessage(
     throw new AppServerError(rawData);
   }
 
-  const data = z.object({ message: messageResolvedSchema }).parse(rawData);
-  return data.message;
+  const parsed = z
+    .object({ message: messageResolvedSchema })
+    .safeParse(rawData);
+  if (!parsed.success) {
+    throw new AppServerError("Server returns invalid data");
+  }
+
+  return parsed.data.message;
 }
 
 export async function fetchRecentUserMessages(
@@ -39,12 +45,16 @@ export async function fetchRecentUserMessages(
     throw new AppServerError(rawData);
   }
 
-  const schema = z.object({
-    messages: z.array(messageResolvedSchema),
-  });
-  const data = schema.parse(rawData);
+  const parsed = z
+    .object({
+      messages: z.array(messageResolvedSchema),
+    })
+    .safeParse(rawData);
+  if (!parsed.success) {
+    throw new AppServerError("Server returns invalid data");
+  }
 
-  return data.messages;
+  return parsed.data.messages;
 }
 
 export async function fetchRecentGlobalMessage(): Promise<MessageResolved[]> {
@@ -52,10 +62,14 @@ export async function fetchRecentGlobalMessage(): Promise<MessageResolved[]> {
   const res = await fetch(path);
   const rawData = await res.json();
 
-  const schema = z.object({
-    messages: z.array(messageResolvedSchema),
-  });
-  const data = schema.parse(rawData);
+  const parsed = z
+    .object({
+      messages: z.array(messageResolvedSchema),
+    })
+    .safeParse(rawData);
+  if (!parsed.success) {
+    throw new AppServerError("Server returns invalid data");
+  }
 
-  return data.messages;
+  return parsed.data.messages;
 }
