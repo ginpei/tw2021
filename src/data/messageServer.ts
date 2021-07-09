@@ -2,6 +2,19 @@ import dummyMessageDatabase from "../_fixture/messageData.dummy";
 import dummyUserDatabase from "../_fixture/userData.dummy";
 import { MessageResolved } from "./messageResolved";
 
+export async function loadMessage(id: string): Promise<MessageResolved | null> {
+  const plainMessage = dummyMessageDatabase.find((v) => v.id === id);
+  if (!plainMessage) {
+    return null;
+  }
+
+  const user =
+    dummyUserDatabase.find((v) => v.id === plainMessage.userId) ?? null;
+
+  const message = { ...plainMessage, user };
+  return message;
+}
+
 export async function loadRecentGlobalMessage(
   offset: number,
   limit: number

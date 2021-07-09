@@ -7,10 +7,19 @@ import { MessageResolved, messageResolvedSchema } from "./messageResolved";
 
 const database: Message[] = dummyMessageDatabase;
 
-export async function fetchMessage(id: string): Promise<Message | null> {
-  await sleep(500);
-  const message = database.find((v) => v.id === id) ?? null;
-  return message;
+export async function fetchMessage(
+  id: string
+): Promise<MessageResolved | null> {
+  const url = `/api/messages/${encodeURIComponent(id)}`;
+  const res = await fetch(url);
+  const rawData = await res.json();
+
+  if (!res.ok) {
+    throw new AppServerError(rawData);
+  }
+
+  const data = z.object({ message: messageResolvedSchema }).parse(rawData);
+  return data.message;
 }
 
 export async function fetchRecentUserMessages(

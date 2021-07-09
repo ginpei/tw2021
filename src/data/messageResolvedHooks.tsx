@@ -10,10 +10,11 @@ import { resolveMessages } from "./messageResolvedData";
 export function useMessage(
   userId: string | undefined,
   messageId: string | undefined
-): [MessageResolved | null | undefined] {
+): [MessageResolved | null | undefined, Error | null] {
   const [message, setMessage] = useState<MessageResolved | null | undefined>(
     undefined
   );
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     setMessage(undefined);
@@ -23,15 +24,11 @@ export function useMessage(
     }
 
     fetchMessage(messageId)
-      .then((rawMessage) => {
-        return rawMessage ? resolveMessages([rawMessage]) : null;
-      })
-      .then((newMessages) => {
-        setMessage(newMessages?.[0] ?? null);
-      });
+      .then((newMessage) => setMessage(newMessage))
+      .catch((v) => setError(v));
   }, [userId, messageId]);
 
-  return [message];
+  return [message, error];
 }
 
 export function useUserRecentMessages(
