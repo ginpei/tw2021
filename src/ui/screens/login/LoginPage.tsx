@@ -35,7 +35,7 @@ export const LoginPage: React.FC = () => {
 
 const LogInForm: React.FC = () => {
   const { logIn } = useLoginMethod();
-  const [screenName, setScreenName] = useState("");
+  const [screenName, setScreenName] = useState("ginpei_jp");
   const [dirty, setDirty] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
