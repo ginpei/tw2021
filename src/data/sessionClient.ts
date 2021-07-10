@@ -2,9 +2,9 @@ import { z } from "zod";
 import { AppServerError } from "./appServerError";
 import { User, userSchema } from "./user";
 
-export async function fetchSession(): Promise<User | null> {
+export async function fetchSession(signal: AbortSignal): Promise<User | null> {
   const url = "/api/session";
-  const res = await fetch(url);
+  const res = await fetch(url, { signal });
   const rawData = await res.json();
 
   if (!res.ok) {

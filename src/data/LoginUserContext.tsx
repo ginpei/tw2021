@@ -22,8 +22,8 @@ export const LoginUserProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<LoginUserContextValue["user"]>(undefined);
 
   useEffect(() => {
-    // TODO cancel when rerun
-    fetchSession()
+    const abortController = new AbortController();
+    fetchSession(abortController.signal)
       .then((newUser) => {
         if (newUser) {
           setUser(createLoggedInUser(newUser));
@@ -32,6 +32,8 @@ export const LoginUserProvider: React.FC = ({ children }) => {
         }
       })
       .catch(() => setUser({ loggedIn: false }));
+
+    return () => abortController.abort();
   }, []);
 
   return (
