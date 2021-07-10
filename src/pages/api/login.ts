@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { AppServerRecord } from "../../data/appServerError";
 import { loginCertSchema } from "../../data/loginCert";
 import { setSession } from "../../data/sessionServer";
-import { createSession } from "../../data/sessionStorage";
+import { createSession } from "../../data/session";
 import { User } from "../../data/user";
 import { fetchUserByScreenName } from "../../data/userData";
 

@@ -1,4 +1,4 @@
-import { Session } from "./sessionStorage";
+import { Session } from "./session";
 
 const sessions = new Map<string, Session>();
 

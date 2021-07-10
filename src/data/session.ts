@@ -1,8 +1,11 @@
-import { DataRecord } from "../gp/data/DataRecord";
+import { z } from "zod";
+import { DataRecord, dataRecordSchema } from "../gp/data/DataRecord";
 
-export interface Session extends DataRecord {
-  userId: string;
-}
+export type Session = z.infer<typeof sessionSchema>;
+
+export const sessionSchema = dataRecordSchema.extend({
+  userId: z.string(),
+});
 
 export function createSession(initial: Partial<Session> = {}): Session {
   const id = generateId();
