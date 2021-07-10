@@ -22,7 +22,7 @@ export default async function handler(
   }
   const query = reqParsed.data;
 
-  const user = await fetchUserByScreenName(query.screenName);
+  const user = await fetchUserByScreenName(undefined, query.screenName);
   if (!user) {
     res.status(401).json({ message: "Incorrect login info" });
     return;
