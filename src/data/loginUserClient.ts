@@ -4,7 +4,6 @@ import { AppServerError } from "./appServerError";
 import { LoginCert } from "./loginCert";
 import { createLoggedInUser, LoginUser } from "./loginUser";
 import { userSchema } from "./user";
-import { fetchUserByScreenName } from "./userData";
 
 export async function logIn(cert: LoginCert): Promise<LoginUser> {
   const url = "/api/login";
