@@ -13,9 +13,13 @@ export function useUserByScreenName(
   const [user, setUser] = useState<User | null | undefined>(undefined);
 
   useEffect(() => {
-    fetchUserByScreenName(screenName).then((newUser) => {
-      setUser(newUser);
-    });
+    const abortController = new AbortController();
+    fetchUserByScreenName(abortController.signal, screenName).then(
+      (newUser) => {
+        setUser(newUser);
+      }
+    );
+    return () => abortController.abort();
   }, [screenName]);
 
   return [user];

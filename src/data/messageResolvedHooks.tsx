@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { noop } from "../misc/misc";
 import {
   fetchMessage,
   fetchRecentGlobalMessage,
@@ -20,12 +21,14 @@ export function useMessage(
     setMessage(undefined);
 
     if (!userId || !messageId) {
-      return;
+      return noop;
     }
 
-    fetchMessage(messageId)
+    const abortController = new AbortController();
+    fetchMessage(abortController.signal, messageId)
       .then((newMessage) => setMessage(newMessage))
       .catch((v) => setError(v));
+    return () => abortController.abort();
   }, [userId, messageId]);
 
   return [message, error];
@@ -45,10 +48,11 @@ export function useUserRecentMessages(
     setMessages(undefined);
 
     if (!userId) {
-      return;
+      return noop;
     }
 
-    fetchRecentUserMessages(userId, offset, limit)
+    const abortController = new AbortController();
+    fetchRecentUserMessages(abortController.signal, userId, offset, limit)
       .then((rawMessages) => {
         return resolveMessages(rawMessages);
       })
@@ -56,6 +60,7 @@ export function useUserRecentMessages(
         setMessages(newMessages);
       })
       .catch((v) => setError(v));
+    return () => abortController.abort();
   }, [limit, offset, userId]);
 
   return [messages, error];
@@ -73,9 +78,11 @@ export function useGlobalTimeline(): [
   useEffect(() => {
     setMessages(undefined);
 
-    fetchRecentGlobalMessage()
+    const abortController = new AbortController();
+    fetchRecentGlobalMessage(abortController.signal)
       .then((newMessages) => setMessages(newMessages))
       .catch((v) => setError(v));
+    return () => abortController.abort();
   }, []);
 
   return [messages, error];

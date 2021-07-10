@@ -11,9 +11,13 @@ export async function fetchUser(userId: string): Promise<User | null> {
 }
 
 export async function fetchUserByScreenName(
+  signal: AbortSignal,
   screenName: string
 ): Promise<User | null> {
   await sleep(500);
+  if (signal.aborted) {
+    return null;
+  }
   const user = database.find((v) => v.screenName === screenName) ?? null;
   return user;
 }

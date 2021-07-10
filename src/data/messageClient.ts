@@ -8,10 +8,11 @@ import { MessageResolved, messageResolvedSchema } from "./messageResolved";
 const database: Message[] = dummyMessageDatabase;
 
 export async function fetchMessage(
+  signal: AbortSignal,
   id: string
 ): Promise<MessageResolved | null> {
   const url = `/api/messages/${encodeURIComponent(id)}`;
-  const res = await fetch(url);
+  const res = await fetch(url, { signal });
   const rawData = await res.json();
 
   if (!res.ok) {
@@ -29,6 +30,7 @@ export async function fetchMessage(
 }
 
 export async function fetchRecentUserMessages(
+  signal: AbortSignal,
   userId: string,
   offset: number,
   limit: number
@@ -38,7 +40,7 @@ export async function fetchRecentUserMessages(
   url.searchParams.set("userId", userId);
   url.searchParams.set("offset", String(offset));
   url.searchParams.set("limit", String(limit));
-  const res = await fetch(url.toString());
+  const res = await fetch(url.toString(), { signal });
   const rawData = await res.json();
 
   if (!res.ok) {
@@ -57,9 +59,11 @@ export async function fetchRecentUserMessages(
   return parsed.data.messages;
 }
 
-export async function fetchRecentGlobalMessage(): Promise<MessageResolved[]> {
+export async function fetchRecentGlobalMessage(
+  signal: AbortSignal
+): Promise<MessageResolved[]> {
   const path = "/api/messages/global";
-  const res = await fetch(path);
+  const res = await fetch(path, { signal });
   const rawData = await res.json();
 
   const parsed = z
