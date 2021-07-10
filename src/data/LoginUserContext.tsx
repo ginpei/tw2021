@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
-import { LoginUser } from "./loginUser";
+import { createLoggedInUser, LoginUser } from "./loginUser";
+import { fetchSession } from "./sessionClient";
 
 export interface LoginUserContextValue {
   setUser: (user: LoginUser) => void;
@@ -20,12 +21,17 @@ export const LoginUserContext = createContext<LoginUserContextValue>(
 export const LoginUserProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<LoginUserContextValue["user"]>(undefined);
 
-  // TODO implement
   useEffect(() => {
-    setTimeout(() => {
-      const newUser: LoginUser = { loggedIn: false };
-      setUser(newUser);
-    }, 300);
+    // TODO cancel when rerun
+    fetchSession()
+      .then((newUser) => {
+        if (newUser) {
+          setUser(createLoggedInUser(newUser));
+        } else {
+          setUser({ loggedIn: false });
+        }
+      })
+      .catch(() => setUser({ loggedIn: false }));
   }, []);
 
   return (

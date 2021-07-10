@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { z } from "zod";
 import { AppServerRecord } from "../../data/appServerError";
 import { loginCertSchema } from "../../data/loginCert";
-import { User, userSchema } from "../../data/user";
+import { setSession } from "../../data/sessionServer";
+import { createSession } from "../../data/sessionStorage";
+import { User } from "../../data/user";
 import { fetchUserByScreenName } from "../../data/userData";
 
 type Data = {
@@ -27,5 +28,9 @@ export default async function handler(
     return;
   }
 
+  const session = createSession({ userId: user.id });
+  setSession(session);
+
+  res.setHeader("Set-Cookie", `session=${session.id}`);
   res.status(200).json({ user });
 }
