@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { LoginUser } from "./loginUser";
 import { LoginUserContext } from "./LoginUserContext";
-import { logIn, LoginCert, logOut } from "./loginUserData";
+import { logIn, logOut } from "./loginUserClient";
+import { LoginCert } from "./loginCert";
 
 /**
  * Returns `LoginUser`.
