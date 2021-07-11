@@ -1,9 +1,9 @@
 import { getDatabase } from "../dummyDatabase/DummyDatabase";
 import { Session } from "./session";
 
-export function getSession(id: string): Session | undefined {
+export function getSession(id: string): Session | null {
   const db = getDatabase();
-  return db.data.sessions[id];
+  return db.data.sessions[id] ?? null;
 }
 
 export function setSession(session: Session): void {
