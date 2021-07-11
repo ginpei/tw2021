@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ChangeEvent, useState } from "react";
-import { useLoginMethod, useLoginUser } from "../../../data/loginUserHooks";
+import { useLoginMethods, useLoginUser } from "../../../data/loginUserHooks";
 import { assureError } from "../../../misc/util";
 import { LineLabel } from "../../form/LineLabel";
 import { NiceButton } from "../../form/NiceButton";
@@ -34,7 +34,7 @@ export const LoginPage: React.FC = () => {
 };
 
 const LogInForm: React.FC = () => {
-  const { logIn } = useLoginMethod();
+  const { logIn } = useLoginMethods();
   const [screenName, setScreenName] = useState("ginpei_jp");
   const [dirty, setDirty] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -76,7 +76,7 @@ const LogInForm: React.FC = () => {
 };
 
 const LogOutForm: React.FC = () => {
-  const { logOut } = useLoginMethod();
+  const { logOut } = useLoginMethods();
   const [dirty, setDirty] = useState(false);
 
   const onClick = async () => {

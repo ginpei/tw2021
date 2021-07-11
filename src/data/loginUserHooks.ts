@@ -23,7 +23,7 @@ export function useLoginUser(): LoginUser {
   return user;
 }
 
-export function useLoginMethod(): {
+export function useLoginMethods(): {
   logIn: (cert: LoginCert) => Promise<void>;
   logOut: () => Promise<void>;
 } {
