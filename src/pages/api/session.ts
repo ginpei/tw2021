@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { AppServerRecord } from "../../data/appServerError";
+import { AppServerErrorData } from "../../data/appServerError";
 import { getSession } from "../../data/sessionServer";
 import { User } from "../../data/user";
 import { fetchUser } from "../../data/userData";
@@ -10,7 +10,7 @@ type Data = {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data | AppServerRecord>
+  res: NextApiResponse<Data | AppServerErrorData>
 ): Promise<void> {
   const sessionId = req.cookies.session;
   const session = getSession(sessionId);

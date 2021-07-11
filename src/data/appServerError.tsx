@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export type AppServerRecord = z.infer<typeof serverErrorSchema>;
+export type AppServerErrorData = z.infer<typeof serverErrorSchema>;
 
 export const serverErrorSchema = z.object({
   message: z.string(),

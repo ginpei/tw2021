@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
-import { AppServerRecord } from "../../../data/appServerError";
+import { AppServerErrorData } from "../../../data/appServerError";
 import { MessageResolved } from "../../../data/messageResolved";
 import { loadRecentUserMessages } from "../../../data/messageServer";
 
@@ -10,7 +10,7 @@ interface Data {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data | AppServerRecord>
+  res: NextApiResponse<Data | AppServerErrorData>
 ): Promise<void> {
   const reqParsed = z
     .object({

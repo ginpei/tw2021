@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { AppServerRecord } from "../../data/appServerError";
+import { AppServerErrorData } from "../../data/appServerError";
 import { loginCertSchema } from "../../data/loginCert";
 import { createSession } from "../../data/session";
 import { setSession } from "../../data/sessionServer";
@@ -12,7 +12,7 @@ type Data = {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data | AppServerRecord>
+  res: NextApiResponse<Data | AppServerErrorData>
 ): Promise<void> {
   const body = JSON.parse(req.body);
   const reqParsed = loginCertSchema.safeParse(body);
