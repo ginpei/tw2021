@@ -1,5 +1,5 @@
 import { mkdirSync, readFileSync, writeFileSync } from "fs";
-import { resolve } from "path";
+import { dirname, resolve } from "path";
 import { DeepReadonly } from "../misc/DeepReadonly";
 import { merge } from "../misc/merge";
 import {
@@ -7,10 +7,6 @@ import {
   DatabaseContent,
   databaseContentSchema,
 } from "./databaseContent";
-
-const databaseFileDir = resolve(process.cwd(), "db/");
-
-const databaseFilePath = resolve(databaseFileDir, "database.json");
 
 let database: DummyDatabase | null = null;
 
@@ -20,6 +16,8 @@ class DummyDatabase {
   get data(): DeepReadonly<DatabaseContent> {
     return this.dataValue;
   }
+
+  constructor(private filePath: string) {}
 
   save(data: DatabaseContent) {
     const merged = merge(this.dataValue, data);
@@ -37,7 +35,7 @@ class DummyDatabase {
 
   private readDatabase(): DatabaseContent {
     // read
-    const json = readFileSync(databaseFilePath, "utf8");
+    const json = readFileSync(this.filePath, "utf8");
 
     // deserialize
     const data = JSON.parse(json);
@@ -51,14 +49,16 @@ class DummyDatabase {
     const json = JSON.stringify(this.dataValue, null, 2);
 
     // write
-    mkdirSync(databaseFileDir, { recursive: true });
-    writeFileSync(databaseFilePath, json, "utf8");
+    const dir = dirname(this.filePath);
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(this.filePath, json, "utf8");
   }
 }
 
 export function getDatabase(): DummyDatabase {
   if (!database) {
-    database = new DummyDatabase();
+    const filePath = resolve(process.cwd(), "db/database.json");
+    database = new DummyDatabase(filePath);
   }
   return database;
 }
