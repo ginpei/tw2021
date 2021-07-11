@@ -10,12 +10,12 @@ export async function logIn(cert: LoginCert): Promise<LoginUser> {
   const method = "POST";
   const body = JSON.stringify(cert);
   const res = await fetch(url, { body, method });
-  const rawData = await res.json();
 
   if (!res.ok) {
-    throw new AppServerError(rawData);
+    throw await AppServerError.createFromResponse(res);
   }
 
+  const rawData = await res.json();
   const parsed = z.object({ user: userSchema }).safeParse(rawData);
   if (!parsed.success) {
     throw new AppServerError("Server returns invalid data");
