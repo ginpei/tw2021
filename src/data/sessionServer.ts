@@ -1,3 +1,4 @@
+import { NextApiRequest } from "next";
 import { getDatabase } from "../dummyDatabase/DummyDatabase";
 import { Session } from "./session";
 
@@ -20,4 +21,8 @@ export function deleteSession(session: Session): void {
   }
   const db = getDatabase();
   db.save({ sessions: { [session.id]: undefined } });
+}
+
+export function getSessionId(req: NextApiRequest): string {
+  return req.cookies.session ?? "";
 }
