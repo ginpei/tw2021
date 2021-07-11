@@ -11,6 +11,5 @@ export function setSession(session: Session): void {
     throw new Error("Session id is missing");
   }
   const db = getDatabase();
-  db.data.sessions[session.id] = session;
-  db.save();
+  db.save({ sessions: { [session.id]: session } });
 }

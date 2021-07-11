@@ -1,6 +1,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from "fs";
 import { resolve } from "path";
-import { Session } from "../data/session";
+import { DeepReadonly } from "../misc/DeepReadonly";
+import { merge } from "../misc/merge";
 import {
   createDatabaseContent,
   DatabaseContent,
@@ -14,9 +15,15 @@ const databaseFilePath = resolve(databaseFileDir, "database.json");
 let database: DummyDatabase | null = null;
 
 class DummyDatabase {
-  data: DatabaseContent = this.initializeDatabase();
+  private dataValue: DatabaseContent = this.initializeDatabase();
 
-  save() {
+  get data(): DeepReadonly<DatabaseContent> {
+    return this.dataValue;
+  }
+
+  save(data: DatabaseContent) {
+    const merged = merge(this.dataValue, data);
+    this.dataValue = databaseContentSchema.parse(merged);
     this.writeDatabase();
   }
 
@@ -41,7 +48,7 @@ class DummyDatabase {
 
   private writeDatabase(): void {
     // serialize
-    const json = JSON.stringify(this.data);
+    const json = JSON.stringify(this.dataValue, null, 2);
 
     // write
     mkdirSync(databaseFileDir, { recursive: true });
