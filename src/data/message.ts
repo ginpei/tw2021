@@ -7,6 +7,8 @@ import { createDataRecord, dataRecordSchema } from "../gp/data/DataRecord";
  */
 export type Message = z.infer<typeof messageSchema>;
 
+export type MessageHandler = (message: Message) => void;
+
 export const messageSchema = dataRecordSchema.extend({
   body: z.string(),
   userId: z.string(),
