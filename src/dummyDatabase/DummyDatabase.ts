@@ -13,13 +13,15 @@ import {
 let database: DummyDatabase | null = null;
 
 class DummyDatabase {
-  private dataValue: DatabaseContent = this.initializeDatabase();
+  private dataValue: DatabaseContent;
 
   get data(): DeepReadonly<DatabaseContent> {
     return this.dataValue;
   }
 
-  constructor(private filePath: string) {}
+  constructor(private filePath: string) {
+    this.dataValue = this.initializeDatabase();
+  }
 
   save(data: Partial<DatabaseContent>) {
     const merged = merge(this.dataValue, data);
