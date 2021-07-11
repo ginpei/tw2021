@@ -4,7 +4,7 @@ import { loginCertSchema } from "../../data/loginCert";
 import { createSession } from "../../data/session";
 import { setSession } from "../../data/sessionServer";
 import { User } from "../../data/user";
-import { fetchUserByScreenName } from "../../data/userData";
+import { getUserByScreenName } from "../../data/userServer";
 
 type Data = {
   user: User;
@@ -22,7 +22,7 @@ export default async function handler(
   }
   const query = reqParsed.data;
 
-  const user = await fetchUserByScreenName(undefined, query.screenName);
+  const user = getUserByScreenName(query.screenName);
   if (!user) {
     res.status(401).json({ message: "Incorrect login info" });
     return;

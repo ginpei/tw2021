@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { AppServerErrorData } from "../../data/appServerError";
 import { getSession } from "../../data/sessionServer";
 import { User } from "../../data/user";
-import { fetchUser } from "../../data/userData";
+import { getUser } from "../../data/userServer";
 
 type Data = {
   user: User | null;
@@ -19,7 +19,7 @@ export default async function handler(
     return;
   }
 
-  const user = await fetchUser(session.userId);
+  const user = await getUser(session.userId);
   if (!user) {
     res.status(401).json({ message: "Incorrect login info" });
     return;

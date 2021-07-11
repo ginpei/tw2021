@@ -2,6 +2,7 @@ import { mkdirSync, readFileSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { DeepReadonly } from "../misc/DeepReadonly";
 import { merge } from "../misc/merge";
+import dummyUserDatabase from "../_fixture/userData.dummy";
 import {
   createDatabaseContent,
   DatabaseContent,
@@ -19,7 +20,7 @@ class DummyDatabase {
 
   constructor(private filePath: string) {}
 
-  save(data: DatabaseContent) {
+  save(data: Partial<DatabaseContent>) {
     const merged = merge(this.dataValue, data);
     this.dataValue = databaseContentSchema.parse(merged);
     this.writeDatabase();
@@ -29,7 +30,8 @@ class DummyDatabase {
     try {
       return this.readDatabase();
     } catch (error) {
-      return createDatabaseContent();
+      const users = Object.fromEntries(dummyUserDatabase.map((v) => [v.id, v]));
+      return createDatabaseContent({ users });
     }
   }
 
