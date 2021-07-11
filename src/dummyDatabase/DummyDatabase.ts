@@ -2,6 +2,7 @@ import { mkdirSync, readFileSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { DeepReadonly } from "../misc/DeepReadonly";
 import { merge } from "../misc/merge";
+import dummyMessageDatabase from "../_fixture/messageData.dummy";
 import dummyUserDatabase from "../_fixture/userData.dummy";
 import {
   createDatabaseContent,
@@ -31,7 +32,10 @@ class DummyDatabase {
       return this.readDatabase();
     } catch (error) {
       const users = Object.fromEntries(dummyUserDatabase.map((v) => [v.id, v]));
-      return createDatabaseContent({ users });
+      const messages = Object.fromEntries(
+        dummyMessageDatabase.map((v) => [v.id, v])
+      );
+      return createDatabaseContent({ messages, users });
     }
   }
 

@@ -1,16 +1,17 @@
-import dummyMessageDatabase from "../_fixture/messageData.dummy";
+import { getDatabase } from "../dummyDatabase/DummyDatabase";
 import { MessageResolved } from "./messageResolved";
 import { getUser } from "./userServer";
 
 export async function loadMessage(id: string): Promise<MessageResolved | null> {
-  const plainMessage = dummyMessageDatabase.find((v) => v.id === id);
+  const db = getDatabase();
+  const plainMessage = db.data.messages[id] ?? null;
   if (!plainMessage) {
     return null;
   }
 
   const user = getUser(plainMessage.userId);
-
   const message = { ...plainMessage, user };
+
   return message;
 }
 
@@ -18,7 +19,9 @@ export async function loadRecentGlobalMessage(
   offset: number,
   limit: number
 ): Promise<MessageResolved[]> {
-  const allMessages = dummyMessageDatabase.map((record) => {
+  const db = getDatabase();
+
+  const allMessages = Object.values(db.data.messages).map((record) => {
     const user = getUser(record.userId);
     return { ...record, user };
   });
@@ -33,7 +36,9 @@ export async function loadRecentUserMessages(
   offset: number,
   limit: number
 ): Promise<MessageResolved[]> {
-  const plainMessages = dummyMessageDatabase
+  const db = getDatabase();
+
+  const plainMessages = Object.values(db.data.messages)
     .filter((v) => v.userId === userId)
     .sort((v, u) => u.createdAt - v.createdAt)
     .slice(offset, offset + limit);

@@ -1,11 +1,6 @@
 import { z } from "zod";
-import { sleep } from "../misc/util";
-import dummyMessageDatabase from "../_fixture/messageData.dummy";
 import { AppServerError } from "./appServerError";
-import { Message } from "./message";
 import { MessageResolved, messageResolvedSchema } from "./messageResolved";
-
-const database: Message[] = dummyMessageDatabase;
 
 export async function fetchMessage(
   signal: AbortSignal,
