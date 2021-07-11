@@ -4,7 +4,7 @@ import { sessionSchema } from "../data/session";
 export type DatabaseContent = z.infer<typeof databaseContentSchema>;
 
 export const databaseContentSchema = z.object({
-  sessions: z.record(sessionSchema),
+  sessions: z.record(z.union([sessionSchema, z.undefined()])),
 });
 
 export function createDatabaseContent(

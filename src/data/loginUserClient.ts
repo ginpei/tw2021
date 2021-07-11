@@ -26,5 +26,11 @@ export async function logIn(cert: LoginCert): Promise<LoginUser> {
 }
 
 export async function logOut(): Promise<void> {
-  await sleep(500);
+  const url = "/api/logout";
+  const method = "POST";
+  const res = await fetch(url, { method });
+
+  if (!res.ok) {
+    throw await AppServerError.createFromResponse(res);
+  }
 }

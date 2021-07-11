@@ -13,3 +13,11 @@ export function setSession(session: Session): void {
   const db = getDatabase();
   db.save({ sessions: { [session.id]: session } });
 }
+
+export function deleteSession(session: Session): void {
+  if (!session.id) {
+    throw new Error("Session id is missing");
+  }
+  const db = getDatabase();
+  db.save({ sessions: { [session.id]: undefined } });
+}
