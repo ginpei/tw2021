@@ -6,7 +6,6 @@ import {
   fetchRecentUserMessages,
 } from "./messageClient";
 import { MessageResolved } from "./messageResolved";
-import { resolveMessages } from "./messageResolvedData";
 
 export function useMessage(
   userId: string | undefined,
@@ -53,9 +52,6 @@ export function useUserRecentMessages(
 
     const abortController = new AbortController();
     fetchRecentUserMessages(abortController.signal, userId, offset, limit)
-      .then((rawMessages) => {
-        return resolveMessages(rawMessages);
-      })
       .then((newMessages) => {
         setMessages(newMessages);
       })

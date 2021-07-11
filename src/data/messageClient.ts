@@ -34,7 +34,7 @@ export async function fetchRecentUserMessages(
   userId: string,
   offset: number,
   limit: number
-): Promise<Message[]> {
+): Promise<MessageResolved[]> {
   const url = new URL(window.location.href);
   url.pathname = "/api/messages/user";
   url.searchParams.set("userId", userId);
