@@ -9,3 +9,7 @@ export function assureError(error: unknown): Error {
 
   return new Error(String(error));
 }
+
+export function generateId(): string {
+  return Math.random().toFixed(32).slice(2);
+}
