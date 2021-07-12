@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { AppServerError } from "./appServerError";
+import { createMessage, Message } from "./message";
 import { MessageResolved, messageResolvedSchema } from "./messageResolved";
 
 export async function fetchMessage(
@@ -32,6 +33,7 @@ export async function fetchRecentUserMessages(
 ): Promise<MessageResolved[]> {
   const url = new URL(window.location.href);
   url.pathname = "/api/messages/user";
+  // TODO replace searchParams with something proper
   url.searchParams.set("userId", userId);
   url.searchParams.set("offset", String(offset));
   url.searchParams.set("limit", String(limit));
@@ -71,4 +73,20 @@ export async function fetchRecentGlobalMessage(
   }
 
   return parsed.data.messages;
+}
+
+export async function saveMessage(
+  signal: AbortSignal | undefined,
+  message: Message
+): Promise<void> {
+  const pureMessage = createMessage(message);
+
+  const url = "/api/messages/";
+  const method = "POST";
+  const body = JSON.stringify({ message: pureMessage });
+
+  const res = await fetch(url.toString(), { body, method, signal });
+  if (!res.ok) {
+    throw await AppServerError.createFromResponse(res);
+  }
 }
