@@ -1,11 +1,11 @@
 import { ChangeEventHandler, FormEventHandler } from "react";
-import { Message, MessageHandler } from "../../data/message";
+import { PureMessage, PureMessageHandler } from "../../data/pureMessage";
 import { NiceButton } from "../form/NiceButton";
 
 export const MessageForm: React.FC<{
-  message: Message;
-  onChange: MessageHandler;
-  onSubmit: MessageHandler;
+  message: PureMessage;
+  onChange: PureMessageHandler;
+  onSubmit: PureMessageHandler;
 }> = ({ message, onChange, onSubmit }) => {
   const onInputChange: ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement

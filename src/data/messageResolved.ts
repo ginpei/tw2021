@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { messageSchema } from "./message";
+import { pureMessageSchema } from "./pureMessage";
 import { userSchema } from "./user";
 
 /**
@@ -8,6 +8,6 @@ import { userSchema } from "./user";
  */
 export type MessageResolved = z.infer<typeof messageResolvedSchema>;
 
-export const messageResolvedSchema = messageSchema.extend({
+export const messageResolvedSchema = pureMessageSchema.extend({
   user: userSchema.nullable(),
 });

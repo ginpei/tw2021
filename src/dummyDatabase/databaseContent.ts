@@ -1,12 +1,12 @@
 import { z } from "zod";
-import { messageSchema } from "../data/message";
+import { pureMessageSchema } from "../data/pureMessage";
 import { sessionSchema } from "../data/session";
 import { userSchema } from "../data/user";
 
 export type DatabaseContent = z.infer<typeof databaseContentSchema>;
 
 export const databaseContentSchema = z.object({
-  messages: z.record(messageSchema),
+  messages: z.record(pureMessageSchema),
   sessions: z.record(z.union([sessionSchema, z.undefined()])),
   users: z.record(userSchema),
 });

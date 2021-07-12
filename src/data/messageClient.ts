@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { AppServerError } from "./appServerError";
-import { createMessage, Message } from "./message";
 import { MessageResolved, messageResolvedSchema } from "./messageResolved";
+import { createMessage, PureMessage } from "./pureMessage";
 
 export async function fetchMessage(
   signal: AbortSignal,
@@ -76,7 +76,7 @@ export async function fetchRecentGlobalMessage(
 
 export async function saveMessage(
   signal: AbortSignal | undefined,
-  message: Message
+  message: PureMessage
 ): Promise<void> {
   const pureMessage = createMessage(message);
 

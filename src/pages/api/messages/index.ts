@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { z, ZodSchema } from "zod";
 import { AppServerErrorData } from "../../../data/appServerError";
-import { Message, messageSchema } from "../../../data/message";
+import { PureMessage, pureMessageSchema } from "../../../data/pureMessage";
 import { getSessionId } from "../../../data/sessionServer";
 import { getUserBySessionId } from "../../../data/sessionUserServer";
 import { User } from "../../../data/user";
@@ -9,7 +9,7 @@ import { getDatabase } from "../../../dummyDatabase/DummyDatabase";
 import { generateId } from "../../../misc/util";
 
 interface PostData {
-  message: Message;
+  message: PureMessage;
 }
 
 export default async function handler(
@@ -37,7 +37,7 @@ async function handlePost(
 
   const body = parseBody(
     z.object({
-      message: messageSchema,
+      message: pureMessageSchema,
     }),
     req
   );
@@ -46,7 +46,7 @@ async function handlePost(
     return;
   }
 
-  const message: Message = modifyMessageToStore(body.message, user);
+  const message: PureMessage = modifyMessageToStore(body.message, user);
   const db = getDatabase();
   db.save({ messages: { [message.id]: message } });
 
@@ -54,12 +54,12 @@ async function handlePost(
 }
 
 // TODO extract
-function modifyMessageToStore(message: Message, user: User): Message {
+function modifyMessageToStore(message: PureMessage, user: User): PureMessage {
   const id = generateId();
   const userId = user.id;
   const updatedAt = Date.now();
 
-  const modified: Message = {
+  const modified: PureMessage = {
     ...message,
     createdAt: message.createdAt || updatedAt,
     id,
