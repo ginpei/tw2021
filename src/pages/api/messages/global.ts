@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { MessageResolved } from "../../../data/messageResolved";
+import { Message } from "../../../data/message";
 import { loadRecentGlobalMessage } from "../../../data/messageServer";
 
 interface Data {
-  messages: MessageResolved[];
+  messages: Message[];
 }
 
 export default async function handler(

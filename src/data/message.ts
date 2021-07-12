@@ -6,8 +6,8 @@ import { userSchema } from "./user";
  * `Message` with `User` data.
  * Use this instead of `Message` directly.
  */
-export type MessageResolved = z.infer<typeof messageResolvedSchema>;
+export type Message = z.infer<typeof messageSchema>;
 
-export const messageResolvedSchema = pureMessageSchema.extend({
+export const messageSchema = pureMessageSchema.extend({
   user: userSchema.nullable(),
 });

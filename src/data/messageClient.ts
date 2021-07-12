@@ -1,12 +1,12 @@
 import { z } from "zod";
 import { AppServerError } from "./appServerError";
-import { MessageResolved, messageResolvedSchema } from "./messageResolved";
+import { Message, messageSchema } from "./message";
 import { createMessage, PureMessage } from "./pureMessage";
 
 export async function fetchMessage(
   signal: AbortSignal,
   id: string
-): Promise<MessageResolved | null> {
+): Promise<Message | null> {
   const url = `/api/messages/${encodeURIComponent(id)}`;
   const res = await fetch(url, { signal });
   const rawData = await res.json();
@@ -15,9 +15,7 @@ export async function fetchMessage(
     throw new AppServerError(rawData);
   }
 
-  const parsed = z
-    .object({ message: messageResolvedSchema })
-    .safeParse(rawData);
+  const parsed = z.object({ message: messageSchema }).safeParse(rawData);
   if (!parsed.success) {
     throw new AppServerError("Server returns invalid data");
   }
@@ -30,7 +28,7 @@ export async function fetchRecentUserMessages(
   userId: string,
   offset: number,
   limit: number
-): Promise<MessageResolved[]> {
+): Promise<Message[]> {
   const url = new URL(window.location.href);
   url.pathname = "/api/messages/user";
   url.searchParams.set("userId", userId);
@@ -45,7 +43,7 @@ export async function fetchRecentUserMessages(
 
   const parsed = z
     .object({
-      messages: z.array(messageResolvedSchema),
+      messages: z.array(messageSchema),
     })
     .safeParse(rawData);
   if (!parsed.success) {
@@ -57,14 +55,14 @@ export async function fetchRecentUserMessages(
 
 export async function fetchRecentGlobalMessage(
   signal: AbortSignal
-): Promise<MessageResolved[]> {
+): Promise<Message[]> {
   const path = "/api/messages/global";
   const res = await fetch(path, { signal });
   const rawData = await res.json();
 
   const parsed = z
     .object({
-      messages: z.array(messageResolvedSchema),
+      messages: z.array(messageSchema),
     })
     .safeParse(rawData);
   if (!parsed.success) {

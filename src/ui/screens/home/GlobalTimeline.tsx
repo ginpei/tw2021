@@ -1,4 +1,4 @@
-import { useGlobalTimeline } from "../../../data/messageResolvedHooks";
+import { useGlobalTimeline } from "../../../data/messageHooks";
 import { ErrorMessage } from "../../stateless/ErrorMessage";
 import { TimelineMessage } from "../../stateless/TimelineMessage";
 

@@ -1,8 +1,8 @@
 import { getDatabase } from "../dummyDatabase/DummyDatabase";
-import { MessageResolved } from "./messageResolved";
+import { Message } from "./message";
 import { getUser } from "./userServer";
 
-export async function loadMessage(id: string): Promise<MessageResolved | null> {
+export async function loadMessage(id: string): Promise<Message | null> {
   const db = getDatabase();
   const plainMessage = db.data.messages[id] ?? null;
   if (!plainMessage) {
@@ -18,7 +18,7 @@ export async function loadMessage(id: string): Promise<MessageResolved | null> {
 export async function loadRecentGlobalMessage(
   offset: number,
   limit: number
-): Promise<MessageResolved[]> {
+): Promise<Message[]> {
   const db = getDatabase();
 
   const allMessages = Object.values(db.data.messages).map((record) => {
@@ -35,7 +35,7 @@ export async function loadRecentUserMessages(
   userId: string,
   offset: number,
   limit: number
-): Promise<MessageResolved[]> {
+): Promise<Message[]> {
   const db = getDatabase();
 
   const plainMessages = Object.values(db.data.messages)

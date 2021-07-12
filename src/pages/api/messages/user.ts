@@ -1,11 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
 import { AppServerErrorData } from "../../../data/appServerError";
-import { MessageResolved } from "../../../data/messageResolved";
+import { Message } from "../../../data/message";
 import { loadRecentUserMessages } from "../../../data/messageServer";
 
 interface Data {
-  messages: MessageResolved[];
+  messages: Message[];
 }
 
 export default async function handler(

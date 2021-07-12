@@ -1,4 +1,4 @@
-import { useMessage } from "../../../data/messageResolvedHooks";
+import { useMessage } from "../../../data/messageHooks";
 import { useUserByScreenName } from "../../../data/userHooks";
 import { BasicLayout } from "../../layouts/basic/BasicLayout";
 import { ErrorMessage } from "../../stateless/ErrorMessage";
