@@ -3,8 +3,8 @@ import { pureMessageSchema } from "./pureMessage";
 import { userSchema } from "./user";
 
 /**
- * `Message` with `User` data.
- * Use this instead of `Message` directly.
+ * `PureMessage` with `User` data.
+ * Use this instead of `PureMessage` directly.
  */
 export type Message = z.infer<typeof messageSchema>;
 
