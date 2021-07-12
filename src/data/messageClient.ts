@@ -1,7 +1,6 @@
 import { z } from "zod";
 import { AppServerError } from "./appServerError";
-import { Message, messageSchema } from "./message";
-import { createMessage, PureMessage } from "./pureMessage";
+import { createMessage, Message, messageSchema, PureMessage } from "./message";
 
 export async function fetchMessage(
   signal: AbortSignal,

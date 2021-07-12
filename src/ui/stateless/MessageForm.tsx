@@ -1,5 +1,5 @@
 import { ChangeEventHandler, FormEventHandler } from "react";
-import { PureMessage, PureMessageHandler } from "../../data/pureMessage";
+import { PureMessage, PureMessageHandler } from "../../data/message";
 import { NiceButton } from "../form/NiceButton";
 
 export const MessageForm: React.FC<{

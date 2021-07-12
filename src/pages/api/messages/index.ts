@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { z, ZodSchema } from "zod";
 import { AppServerErrorData } from "../../../data/appServerError";
-import { PureMessage, pureMessageSchema } from "../../../data/pureMessage";
+import { PureMessage, pureMessageSchema } from "../../../data/message";
 import { getSessionId } from "../../../data/sessionServer";
 import { getUserBySessionId } from "../../../data/sessionUserServer";
 import { User } from "../../../data/user";

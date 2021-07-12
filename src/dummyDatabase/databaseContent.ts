@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { pureMessageSchema } from "../data/pureMessage";
+import { pureMessageSchema } from "../data/message";
 import { sessionSchema } from "../data/session";
 import { userSchema } from "../data/user";
 

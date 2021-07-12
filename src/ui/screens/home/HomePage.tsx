@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useState } from "react";
+import { createMessage } from "../../../data/message";
 import { saveMessage } from "../../../data/messageClient";
-import { createMessage } from "../../../data/pureMessage";
 import { assureError } from "../../../misc/util";
 import { BasicLayout } from "../../layouts/basic/BasicLayout";
 import { ErrorMessage } from "../../stateless/ErrorMessage";

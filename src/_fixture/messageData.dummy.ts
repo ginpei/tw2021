@@ -1,4 +1,4 @@
-import { PureMessage } from "../data/pureMessage";
+import { PureMessage } from "../data/message";
 
 const dummyMessageDatabase: PureMessage[] = [
   {
