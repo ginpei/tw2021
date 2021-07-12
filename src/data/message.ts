@@ -25,7 +25,9 @@ export const messageSchema = pureMessageSchema.extend({
   user: userSchema.nullable(),
 });
 
-export function createMessage(initial: Partial<PureMessage> = {}): PureMessage {
+export function createPureMessage(
+  initial: Partial<PureMessage> = {}
+): PureMessage {
   return {
     ...createDataRecord(initial),
     body: initial.body ?? "",

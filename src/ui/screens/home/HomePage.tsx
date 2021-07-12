@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
-import { createMessage } from "../../../data/message";
+import { createPureMessage } from "../../../data/message";
 import { saveMessage } from "../../../data/messageClient";
 import { assureError } from "../../../misc/util";
 import { BasicLayout } from "../../layouts/basic/BasicLayout";
@@ -27,14 +27,14 @@ export const HomePage: React.FC = () => {
 };
 
 const ActiveMessageForm: React.FC = () => {
-  const [message, setMessage] = useState(createMessage());
+  const [message, setMessage] = useState(createPureMessage());
   const [error, setError] = useState<Error | null>(null);
 
   const onSubmit = async () => {
     setError(null);
     try {
       await saveMessage(undefined, message);
-      setMessage(createMessage());
+      setMessage(createPureMessage());
     } catch (newError) {
       setError(assureError(newError));
     }

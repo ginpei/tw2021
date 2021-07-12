@@ -1,6 +1,11 @@
 import { z } from "zod";
 import { AppServerError } from "./appServerError";
-import { createMessage, Message, messageSchema, PureMessage } from "./message";
+import {
+  createPureMessage,
+  Message,
+  messageSchema,
+  PureMessage,
+} from "./message";
 
 export async function fetchMessage(
   signal: AbortSignal,
@@ -75,7 +80,7 @@ export async function saveMessage(
   signal: AbortSignal | undefined,
   message: PureMessage
 ): Promise<void> {
-  const pureMessage = createMessage(message);
+  const pureMessage = createPureMessage(message);
 
   const url = "/api/messages/";
   const method = "POST";
