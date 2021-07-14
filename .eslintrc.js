@@ -7,6 +7,15 @@ module.exports = {
     "next/core-web-vitals",
   ],
   rules: {
-    // your rules here
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        devDependencies: [
+          "**/*.test.{ts,tsx}",
+          "**/*.spec.{ts,tsx}",
+          "**/*.stories.{ts,tsx}",
+        ],
+      },
+    ],
   },
 };
