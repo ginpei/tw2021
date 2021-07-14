@@ -1,6 +1,6 @@
-import { Message } from "../data/message";
+import { PureMessage } from "../data/message";
 
-const dummyMessageDatabase: Message[] = [
+const dummyMessageDatabase: PureMessage[] = [
   {
     body: "Fugiat excepturi consequatur voluptas dolores aperiam cupiditate ipsa molestias sed! Rerum, nihil quos nam omnis eveniet numquam voluptatem vel fuga mollitia hic similique, officiis perspiciatis minima optio maiores magni labore?",
     createdAt: 969782156701,

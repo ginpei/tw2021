@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { DataRecord, dataRecordSchema } from "../gp/data/DataRecord";
+import { generateId } from "../misc/util";
 
 export type Session = z.infer<typeof sessionSchema>;
 
@@ -16,8 +17,4 @@ export function createSession(initial: Partial<Session> = {}): Session {
     updatedAt: createdAt,
     userId: initial.userId ?? "",
   };
-}
-
-function generateId() {
-  return Math.random().toFixed(32).slice(2);
 }

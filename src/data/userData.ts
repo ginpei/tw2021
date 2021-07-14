@@ -9,7 +9,7 @@ export async function fetchUserByScreenName(
   const url = `/api/users/search/?screenName=${encodeURIComponent(screenName)}`;
   const res = await fetch(url, { signal });
   if (!res.ok) {
-    throw AppServerError.createFromResponse(res);
+    throw await AppServerError.createFromResponse(res);
   }
 
   const rawData = await res.json();

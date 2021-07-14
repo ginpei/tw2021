@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useUserRecentMessages } from "../../../data/messageResolvedHooks";
+import { useUserRecentMessages } from "../../../data/messageHooks";
 import { useUserByScreenName } from "../../../data/userHooks";
 import { BasicLayout } from "../../layouts/basic/BasicLayout";
 import { ErrorMessage } from "../../stateless/ErrorMessage";

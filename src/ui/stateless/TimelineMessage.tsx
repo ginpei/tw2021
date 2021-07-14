@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { MessageResolved } from "../../data/messageResolved";
+import { Message } from "../../data/message";
 import { ModerateLink } from "../form/Links";
 import { messageViewPath } from "../screens/messageView/messageViewMeta";
 import { userHomePath } from "../screens/userHome/userHomeMeta";
 
-export const TimelineMessage: React.FC<{ message: MessageResolved }> = ({
+export const TimelineMessage: React.FC<{ message: Message }> = ({
   message,
 }) => {
   const screenName = message.user?.screenName ?? message.userId;

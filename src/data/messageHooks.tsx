@@ -1,19 +1,17 @@
 import { useEffect, useState } from "react";
 import { noop } from "../misc/misc";
+import { Message } from "./message";
 import {
   fetchMessage,
   fetchRecentGlobalMessage,
   fetchRecentUserMessages,
 } from "./messageClient";
-import { MessageResolved } from "./messageResolved";
 
 export function useMessage(
   userId: string | undefined,
   messageId: string | undefined
-): [MessageResolved | null | undefined, Error | null] {
-  const [message, setMessage] = useState<MessageResolved | null | undefined>(
-    undefined
-  );
+): [Message | null | undefined, Error | null] {
+  const [message, setMessage] = useState<Message | null | undefined>(undefined);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
@@ -36,11 +34,9 @@ export function useMessage(
 export function useUserRecentMessages(
   userId: string | undefined,
   limit: number
-): [MessageResolved[] | undefined, Error | null] {
+): [Message[] | undefined, Error | null] {
   const [offset] = useState(0);
-  const [messages, setMessages] = useState<MessageResolved[] | undefined>(
-    undefined
-  );
+  const [messages, setMessages] = useState<Message[] | undefined>(undefined);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
@@ -62,13 +58,8 @@ export function useUserRecentMessages(
   return [messages, error];
 }
 
-export function useGlobalTimeline(): [
-  MessageResolved[] | undefined,
-  Error | null
-] {
-  const [messages, setMessages] = useState<MessageResolved[] | undefined>(
-    undefined
-  );
+export function useGlobalTimeline(): [Message[] | undefined, Error | null] {
+  const [messages, setMessages] = useState<Message[] | undefined>(undefined);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
