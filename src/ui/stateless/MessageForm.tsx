@@ -1,6 +1,10 @@
 import { ChangeEventHandler, FormEventHandler } from "react";
+import styled from "styled-components";
 import { PureMessage, PureMessageHandler } from "../../data/message";
+import { FlexBlocks } from "../form/FlexBlocks";
 import { NiceButton } from "../form/NiceButton";
+import { NiceLabel } from "../form/NiceLabel";
+import { NiceTextarea } from "../form/NiceTextarea";
 
 export const MessageForm: React.FC<{
   message: PureMessage;
@@ -25,18 +29,24 @@ export const MessageForm: React.FC<{
   };
 
   return (
-    <form className="MessageForm" onSubmit={onFormSubmit}>
-      <label className="label">
-        Message
-        <textarea
-          name="body"
-          onChange={onInputChange}
-          value={message.body}
-        ></textarea>
-      </label>
-      <p>
+    <Frame className="MessageForm" onSubmit={onFormSubmit}>
+      <FlexBlocks>
+        <NiceLabel>
+          Message
+          <NiceTextarea
+            height="3rem"
+            name="body"
+            onChange={onInputChange}
+            value={message.body}
+          />
+        </NiceLabel>
         <NiceButton>Submit</NiceButton>
-      </p>
-    </form>
+      </FlexBlocks>
+    </Frame>
   );
 };
+
+const Frame = styled.form`
+  border: var(--box-border-width) solid var(--box-border-color);
+  padding: 1rem;
+`;
