@@ -29,10 +29,18 @@ class DummyDatabase {
     this.writeDatabase();
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  log(...args: any[]) {
+    // eslint-disable-next-line no-console
+    console.log("[DummyDatabase]", ...args);
+  }
+
   private initializeDatabase(): DatabaseContent {
     try {
       return this.readDatabase();
     } catch (error) {
+      this.log("Failed to read database", error);
+
       const users = Object.fromEntries(dummyUserDatabase.map((v) => [v.id, v]));
       const messages = Object.fromEntries(
         dummyMessageDatabase.map((v) => [v.id, v])
