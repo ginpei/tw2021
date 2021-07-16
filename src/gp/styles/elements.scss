@@ -117,12 +117,22 @@ a {
 }
 
 button {
-  border-color: var(--box-border-color);
+  --button-border-color: var(--box-border-color);
+  --button-fg: var(--box-fg);
+
+  border-color: var(--button-border-color);
   border-radius: var(--box-border-radius);
   border-style: solid;
   border-width: var(--box-border-width);
-  color: var(--box-fg);
+  color: var(--button-fg);
   cursor: pointer;
+
+  &:disabled {
+    --button-border-color: var(--box-border-color-disabled);
+    --button-fg: var(--box-fg-disabled);
+
+    cursor: default;
+  }
 }
 
 code {
