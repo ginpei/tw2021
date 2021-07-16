@@ -11,10 +11,6 @@ export const UserHomePage: React.FC<{ screenName: string }> = ({
   screenName,
 }) => {
   const [user] = useUserByScreenName(screenName);
-  const [messages, messagesError] = useUserRecentMessages(
-    user?.id ?? undefined,
-    30
-  );
 
   if (user === null) {
     return <NotFoundScreen />;
@@ -27,19 +23,31 @@ export const UserHomePage: React.FC<{ screenName: string }> = ({
   return (
     <BasicLayout title={`Home of ${user.name}`}>
       <h1>{user.name}</h1>
-      {messagesError ? (
-        <ErrorMessage error={messagesError} />
-      ) : (
-        <div className="messages">
-          {messages ? (
-            messages.map((message) => (
-              <TimelineMessage key={message.id} message={message} />
-            ))
-          ) : (
-            <div>...</div>
-          )}
-        </div>
-      )}
+      <UserTimeline screenName={screenName} />
     </BasicLayout>
+  );
+};
+
+const UserTimeline: React.FC<{ screenName: string }> = ({ screenName }) => {
+  const [user] = useUserByScreenName(screenName);
+  const [messages, messagesError] = useUserRecentMessages(
+    user?.id ?? undefined,
+    30
+  );
+
+  if (messagesError) {
+    return <ErrorMessage error={messagesError} />;
+  }
+
+  if (!messages) {
+    return <div>...</div>;
+  }
+
+  return (
+    <div className="messages">
+      {messages.map((message) => (
+        <TimelineMessage key={message.id} message={message} />
+      ))}
+    </div>
   );
 };
