@@ -19,7 +19,7 @@ export const TimelineMessage: React.FC<{ message: Message }> = ({
           <MessageTimeLink>{timeToString(message.createdAt)}</MessageTimeLink>
         </ModerateLink>
       </MessageMeta>
-      <div>{message.body}</div>
+      <MessageBody>{message.body}</MessageBody>
     </Frame>
   );
 };
@@ -65,4 +65,9 @@ const ScreenName = styled.span`
 
 const MessageTimeLink = styled.time`
   font-size: var(--font-small);
+`;
+
+const MessageBody = styled.div`
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
 `;
