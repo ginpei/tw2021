@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { useUserRecentMessages } from "../../../data/messageHooks";
+import { User } from "../../../data/user";
 import { useUserByScreenName } from "../../../data/userHooks";
+import { FlexBlocks } from "../../form/FlexBlocks";
 import { BasicLayout } from "../../layouts/basic/BasicLayout";
 import { ErrorMessage } from "../../stateless/ErrorMessage";
 import { TimelineMessage } from "../../stateless/TimelineMessage";
@@ -22,14 +24,36 @@ export const UserHomePage: React.FC<{ screenName: string }> = ({
 
   return (
     <BasicLayout title={`Home of ${user.name}`}>
-      <h1>{user.name}</h1>
-      <UserTimeline screenName={screenName} />
+      <FlexBlocks>
+        <UserProfile user={user} />
+        <UserTimeline user={user} />
+      </FlexBlocks>
     </BasicLayout>
   );
 };
 
-const UserTimeline: React.FC<{ screenName: string }> = ({ screenName }) => {
-  const [user] = useUserByScreenName(screenName);
+const UserProfile: React.FC<{ user: User }> = ({ user }) => {
+  return (
+    <FlexBlocks className="UserProfile">
+      <h1>
+        {user.name || "-"} @{user.screenName}
+      </h1>
+      {user.bio && <UserBio>{user.bio}</UserBio>}
+      {user.url && (
+        <div>
+          <a href={user.url}>{user.url}</a>
+        </div>
+      )}
+    </FlexBlocks>
+  );
+};
+
+const UserBio = styled.div`
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+`;
+
+const UserTimeline: React.FC<{ user: User }> = ({ user }) => {
   const [messages, messagesError] = useUserRecentMessages(
     user?.id ?? undefined,
     30

@@ -2,9 +2,11 @@ import { createUser, User } from "../data/user";
 
 const dummyUserDatabase: User[] = [
   createUser({
+    bio: "かつてはマラカスを振るなどしておりましたが、近年は日々JavaScriptを書いて暮らしております。あとお寿司を少々 / English: @ginpei_en",
     id: "id-ginpei_jp",
     name: "高梨ギンペイ",
     screenName: "ginpei_jp",
+    url: "https://ginpei.dev",
   }),
   createUser({
     id: "id-great_tanaka",
@@ -17,9 +19,9 @@ const dummyUserDatabase: User[] = [
     screenName: "oOoOoOoOo",
   }),
   createUser({
-    id: "id-dodododo",
-    name: "ドドドドドドドドド",
-    screenName: "dodododo",
+    id: "id-noname",
+    name: "",
+    screenName: "noname",
   }),
 ];
 export default dummyUserDatabase;

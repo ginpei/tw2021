@@ -701,5 +701,12 @@ const dummyMessageDatabase: PureMessage[] = [
     updatedAt: 1075519878465,
     userId: "id-dodododobot",
   },
+  {
+    body: "",
+    createdAt: 1626452960834,
+    id: "92938798342787642958739979803799",
+    updatedAt: 1626452960834,
+    userId: "id-noname",
+  },
 ];
 export default dummyMessageDatabase;
