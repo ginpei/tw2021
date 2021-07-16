@@ -43,12 +43,3 @@ export const UserHomePage: React.FC<{ screenName: string }> = ({
     </BasicLayout>
   );
 };
-
-const Box = styled.div`
-  border: thin solid lightgrey;
-  padding: 1rem;
-
-  &:nth-child(n + 2) {
-    border-top-style: none;
-  }
-`;
