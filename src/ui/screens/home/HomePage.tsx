@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
+import { useLoginUser } from "../../../data/loginUserHooks";
 import { createPureMessage } from "../../../data/message";
 import { saveMessage } from "../../../data/messageClient";
 import { assureError } from "../../../misc/util";
@@ -11,16 +12,18 @@ import { userHomePath } from "../userHome/userHomeMeta";
 import { GlobalTimeline } from "./GlobalTimeline";
 
 export const HomePage: React.FC = () => {
+  const user = useLoginUser();
+
   return (
     <BasicLayout title="Home">
       <h1>HOME</h1>
-      <p>
-        <Link href={loginPath()}>Login</Link>
-      </p>
-      <p>
-        <Link href={userHomePath("ginpei_jp")}>@ginpei_jp</Link>
-      </p>
-      <ActiveMessageForm />
+      {user.loggedIn ? (
+        <ActiveMessageForm />
+      ) : (
+        <p>
+          <Link href={loginPath()}>Login</Link>
+        </p>
+      )}
       <GlobalTimeline />
     </BasicLayout>
   );
