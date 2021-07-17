@@ -16,7 +16,9 @@ p,
 pre,
 table,
 ul {
-  margin-top: 1em;
+  & + & {
+    margin-top: 1em;
+  }
 }
 
 body {
