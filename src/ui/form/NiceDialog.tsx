@@ -37,7 +37,10 @@ export const NiceDialogTitle = styled(Dialog.Title)`
   font-size: 1rem;
   line-height: 1.5em;
   margin: 0;
+  overflow: hidden;
   padding: 0 1em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export const NiceDialogBody = styled.div`
