@@ -16,7 +16,9 @@ p,
 pre,
 table,
 ul {
-  margin-top: 1em;
+  & + & {
+    margin-top: 1em;
+  }
 }
 
 body {
@@ -117,15 +119,23 @@ a {
 }
 
 button {
-  --button-border-color: var(--box-border-color);
-  --button-fg: var(--box-fg);
-
+  background-color: var(--button-bg);
   border-color: var(--button-border-color);
   border-radius: var(--box-border-radius);
   border-style: solid;
   border-width: var(--box-border-width);
   color: var(--button-fg);
   cursor: pointer;
+  height: var(--clickable-height);
+
+  &:focus {
+    box-shadow: var(--button-shadow-focus);
+  }
+
+  &:focus-visible {
+    outline-offset: 1px;
+    outline: thin solid var(--button-border-color);
+  }
 
   &:disabled {
     --button-border-color: var(--box-border-color-disabled);
