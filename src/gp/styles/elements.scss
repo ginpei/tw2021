@@ -126,6 +126,7 @@ button {
   border-width: var(--box-border-width);
   color: var(--button-fg);
   cursor: pointer;
+  height: var(--clickable-height);
 
   &:focus {
     box-shadow: var(--button-shadow-focus);
