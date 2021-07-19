@@ -119,11 +119,6 @@ a {
 }
 
 button {
-  --button-border-color: var(--box-border-color);
-  --button-fg: var(--box-fg);
-  --button-bg: #eee;
-  --button-shadow-focus: 0 0 0.3rem #0003 inset;
-
   background-color: var(--button-bg);
   border-color: var(--button-border-color);
   border-radius: var(--box-border-radius);
