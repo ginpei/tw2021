@@ -26,7 +26,7 @@ export const FollowButton: React.FC = () => {
         </NiceDialogBody>
         <NiceDialogFooter>
           <NiceButton onClick={() => setVisible(false)}>Cancel</NiceButton>
-          <NicePrimaryButton onClick={() => setVisible(false)}>
+          <NicePrimaryButton autoFocus onClick={() => setVisible(false)}>
             Follow
           </NicePrimaryButton>
         </NiceDialogFooter>
