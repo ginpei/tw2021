@@ -4,8 +4,8 @@ import {
   NiceDialog,
   NiceDialogBody,
   NiceDialogFooter,
-  NiceDialogTitle,
 } from "../../form/NiceDialog";
+import { NicePrimaryButton } from "../../form/NicePrimaryButton";
 
 export const FollowButton: React.FC = () => {
   const [visible, setVisible] = useState(true);
@@ -26,7 +26,9 @@ export const FollowButton: React.FC = () => {
         </NiceDialogBody>
         <NiceDialogFooter>
           <NiceButton onClick={() => setVisible(false)}>Cancel</NiceButton>
-          <NiceButton onClick={() => setVisible(false)}>Follow</NiceButton>
+          <NicePrimaryButton onClick={() => setVisible(false)}>
+            Follow
+          </NicePrimaryButton>
         </NiceDialogFooter>
       </NiceDialog>
     </>

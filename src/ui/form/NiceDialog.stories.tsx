@@ -2,6 +2,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { useState } from "react";
 import { NiceButton } from "./NiceButton";
 import { NiceDialog, NiceDialogBody, NiceDialogFooter } from "./NiceDialog";
+import { NicePrimaryButton } from "./NicePrimaryButton";
 
 export default {
   title: "Nice/NiceDialog",
@@ -41,14 +42,14 @@ export const Basic: ComponentStory<typeof NiceDialog> = (args) => {
           >
             Cancel
           </NiceButton>
-          <NiceButton
+          <NicePrimaryButton
             onClick={() => {
               setResult("OK");
               setVisible(false);
             }}
           >
             OK
-          </NiceButton>
+          </NicePrimaryButton>
         </NiceDialogFooter>
       </NiceDialog>
     </>

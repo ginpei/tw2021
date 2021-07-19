@@ -121,13 +121,25 @@ a {
 button {
   --button-border-color: var(--box-border-color);
   --button-fg: var(--box-fg);
+  --button-bg: #eee;
+  --button-shadow-focus: 0 0 0.3rem #0003 inset;
 
+  background-color: var(--button-bg);
   border-color: var(--button-border-color);
   border-radius: var(--box-border-radius);
   border-style: solid;
   border-width: var(--box-border-width);
   color: var(--button-fg);
   cursor: pointer;
+
+  &:focus {
+    box-shadow: var(--button-shadow-focus);
+  }
+
+  &:focus-visible {
+    outline-offset: 1px;
+    outline: thin solid var(--button-border-color);
+  }
 
   &:disabled {
     --button-border-color: var(--box-border-color-disabled);
