@@ -1,8 +1,15 @@
-// colors
+// colors > general
 :root {
   --base-bg: #fff;
   --base-fg: #333;
   --base-border-color: #ccc;
+  --disabled-fg: #999;
+  --theme-bg: #036;
+  --theme-fg: #fff;
+}
+
+// colors > basic components
+:root {
   --box-bg: rgb(239, 239, 239);
   --box-border-color: var(--spectrum-alias-border-color, var(--spectrum-global-color-gray-400, rgb(118, 118, 118)));
   --box-border-color-disabled: rgb(200, 200, 200);
@@ -14,14 +21,11 @@
   --button-border-color: var(--box-border-color);
   --button-fg: var(--box-fg);
   --button-shadow-focus: 0 0 0.3rem #0003 inset;
-  --disabled-fg: #999;
   --link-fg: var(--spectrum-global-color-blue-600, #00c);
   --link-hover-fg: var(--spectrum-global-color-red-600, #c00);
   --table-border-color: #ccc;
   --table-header-bg: #666;
   --table-header-fg: #fff;
-  --theme-bg: #036;
-  --theme-fg: #fff;
 }
 
 // sizes
